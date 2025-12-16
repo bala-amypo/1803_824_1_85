@@ -23,20 +23,26 @@ public class Property{
      public String getaddress(){
         return address;
      }
-     public void setemail(){
-        this.email=email;
+     public void setaddress(){
+        this.addresss=address;
      }
-     public String getpassword(){
-        return password;
+     public String getcity(){
+        return city;
      }
-     public void setpassword(){
-        this.password=password;
+     public void setcity(){
+        this.city=city;
      }
-     public String getrole(){
-        return role;
+     public Double getprice(){
+        return price;
      }
-     public void setrole(){
-        this.role=role;
+     public void setprice(){
+        this.price=price;
+     }
+     public Double getareaSqFt(){
+        return price;
+     }
+     public void setareaSqFt(){
+        this.areaSqFt=areaSqFt;
      }
 
 }
