@@ -1,12 +1,11 @@
 package com.example.demo.entity;
-
-public class R{
+import java.time.LocalDateTime;
+public class RatingLog{
     private Long id;
-    private String title;
-    private String address;
-    private String city;
-    private Double price;
-    private Double  areaSqFt;
+    private Property property;
+    private String message;
+    private LocalDateTime loggedAt;
+    
      
      public Long getid(){
         return id;
@@ -14,35 +13,24 @@ public class R{
      public void setid(Long id){
         this.id=id;
      }
-     public String gettitle(){
-        return title;
+     public Property setproperty(){
+        return property;
      }
-     public void settitle(String title){
-        this.title=title;
+     public void getproperty(Property property){
+        this.property=property;
      }
-     public String getaddress(){
-        return address;
+     public String getmessage(){
+        return message;
      }
-     public void setaddress(String address){
-        this.addresss=address;
+     public void setmessage(String message){
+        this.message=message;
      }
-     public String getcity(){
-        return city;
+     
+     public LocalDateTime getloggedAt(){
+        return loggedAt;
      }
-     public void setcity(String city){
-        this.city=city;
+     public void setloggedAt(Double loggedAt){
+        this.loggedAt=loggedAt;
      }
-     public Double getprice(){
-        return price;
-     }
-     public void setprice(Double price){
-        this.price=price;
-     }
-     public Double getareaSqFt(){
-        return price;
-     }
-     public void setareaSqFt(Double areaSqFt){
-        this.areaSqFt=areaSqFt;
-     }
-
+     
 }
