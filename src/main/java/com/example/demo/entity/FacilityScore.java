@@ -23,7 +23,19 @@ public class FacilityScore{
         return email;
      }
      public void setemail(){
-        this.name=name;
+        this.email=email;
+     }
+     public String getpassword(){
+        return password;
+     }
+     public void setpassword(){
+        this.password=password;
+     }
+     public String getrole(){
+        return role;
+     }
+     public void setrole(){
+        this.role=role;
      }
 
 }
