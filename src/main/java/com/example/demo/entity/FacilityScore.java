@@ -20,22 +20,36 @@ public class FacilityScore{
         return property;
      }
 
-     public void setproperty(Property property){
+     public void getproperty(Property property){
         this.property=property;
 
-     } public Integer getschoolProximity(){
+     } public Integer setschoolProximity(){
         return schoolProximity;
      }
 
-     public void setschoolProximity(Integer schoolProximity){
+     public void getschoolProximity(Integer schoolProximity){
         this.schoolProximity=schoolProximity;
      }
-      public Integer gethospitalProximity(){
+      public Integer sethospitalProximity(){
         return hospitalProximity;
      }
 
-     public void sethospitalProximity(Integer schoolProximity){
-        this.schoolProximity=schoolProximity;
+     public void gethospitalProximity(Integer hospitalProximity){
+        this.hospitalProximity=hospitalProximity;
+     }
+      public Integer settransportAccess(){
+        return transportAccess;
+     }
+
+     public void gettransportAccess(Integer transportAccess){
+        this.transportAccess=transportAccess;
+     }
+      public Integer setsafetyScore(){
+        return safetyScore;
+     }
+
+     public void getsafetyScore(Integer safetyScore){
+        this.safetyScore=safetyScore;
      }
 
      
