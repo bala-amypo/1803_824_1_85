@@ -17,31 +17,31 @@ public class Property{
      public String gettitle(){
         return title;
      }
-     public void settitle(){
+     public void settitle(String title){
         this.title=title;
      }
      public String getaddress(){
         return address;
      }
-     public void setaddress(){
+     public void setaddress(String address){
         this.addresss=address;
      }
      public String getcity(){
         return city;
      }
-     public void setcity(){
+     public void setcity(String city){
         this.city=city;
      }
      public Double getprice(){
         return price;
      }
-     public void setprice(){
+     public void setprice(Double price){
         this.price=price;
      }
      public Double getareaSqFt(){
         return price;
      }
-     public void setareaSqFt(){
+     public void setareaSqFt(Double areaSqFt){
         this.areaSqFt=areaSqFt;
      }
 
