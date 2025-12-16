@@ -51,6 +51,7 @@ public class FacilityScore{
      public void getsafetyScore(Integer safetyScore){
         this.safetyScore=safetyScore;
      }
+}
 
      
     

@@ -14,32 +14,32 @@ public class RatingResult{
      public void setid(Long id){
         this.id=id;
      }
-     public Property setproperty(){
+     public Property getproperty(){
         return property;
      }
-     public void getproperty(Property property){
+     public void setproperty(Property property){
         this.property=property;
      }
 
-      public Double setfinalRating(){
+      public Double getfinalRating(){
         return finalRating;
      }
-     public void getfinalRating(String finalRating){
+     public void setfinalRating(Double finalRating){
         this.finalRating=finalRating;
      }
 
-     public String (){
-        return message;
+     public String getratingCategory (){
+        return ratingCategory;
      }
-     public void setmessage(String message){
-        this.message=message;
+     public void setratingCategory(String ratingCategory){
+        this.ratingCategory=ratingCategory;
      }
      
-     public LocalDateTime getloggedAt(){
-        return loggedAt;
+     public LocalDateTime getratedAt(){
+        return ratedAt;
      }
-     public void setloggedAt(Double loggedAt){
-        this.loggedAt=loggedAt;
+     public void setratedAt(LocalDateTime ratedAt){
+        this.ratedAt=ratedAt;
      }
      
 }

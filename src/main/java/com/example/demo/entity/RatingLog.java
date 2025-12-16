@@ -29,7 +29,7 @@ public class RatingLog{
      public LocalDateTime getloggedAt(){
         return loggedAt;
      }
-     public void setloggedAt(Double loggedAt){
+     public void setloggedAt(LocalDateTime loggedAt){
         this.loggedAt=loggedAt;
      }
      
