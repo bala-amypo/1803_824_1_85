@@ -20,4 +20,7 @@ public class FacilityScore{
         return property;
      }
 
-     public void setproperty()
+     public void setproperty(Property property){
+        this.property=property;
+     }
+     
