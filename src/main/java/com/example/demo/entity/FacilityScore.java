@@ -60,17 +60,17 @@ public class FacilityScore{
         this.safetyScore=safetyScore;
      }
 
-   public property(Long id, Property property,Integer schoolProximity,Integer hospitalProximity,Integer transportAccess,Integer safetyScore){
+   public FacilityScore(Long id, Property property,Integer schoolProximity,Integer hospitalProximity,Integer transportAccess,Integer safetyScore){
       this.id=id;
       this.property=property;
-      this.f;
-      this.city=city;
-      this.price=price;
-      this.areaSqFt=areaSqFt;
+      this.schoolProximity=schoolProximity;
+      this.hospitalProximity=hospitalProximity;
+      this.transportAccess=transportAccess;
+      this.safetyScore=safetyScore;
 
 
    }
-   public Property(){
+   public FacilityScore(){
       
    }
 }
