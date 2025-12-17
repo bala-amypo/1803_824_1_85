@@ -7,7 +7,7 @@ import jakarta.persistence.GenerationType;
 
 @Entity
 public class Property{
-   
+
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
@@ -48,7 +48,7 @@ public class Property{
         this.price=price;
      }
      public Double getareaSqFt(){
-        return price;
+        return areaSqFt;
      }
      public void setareaSqFt(Double areaSqFt){
         this.areaSqFt=areaSqFt;
