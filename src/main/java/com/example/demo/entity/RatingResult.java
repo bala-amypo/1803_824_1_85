@@ -49,7 +49,8 @@ public class RatingResult{
      public void setratedAt(LocalDateTime ratedAt){
         this.ratedAt=ratedAt;
      }
-        public RatingResult(Long id,Property property,Double finalRating,String ratingCategory,LocalDateTime ratedAt){
+     
+    public RatingResult(Long id,Property property,Double finalRating,String ratingCategory,LocalDateTime ratedAt){
       this.id=id;
       this.property=property;
       this.finalRating=finalRating;

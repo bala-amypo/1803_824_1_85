@@ -1,6 +1,15 @@
 package com.example.demo.entity;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import java.time.LocalDateTime;
+
+@Entity
 public class RatingLog{
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     private Property property;
     private String message;
@@ -32,5 +41,16 @@ public class RatingLog{
      public void setloggedAt(LocalDateTime loggedAt){
         this.loggedAt=loggedAt;
      }
+
+   public RatingLog(Long id,Property property,,String message,LocalDateTime loggedAt){
+      this.id=id;
+      this.property=property;
+      this.finalRating=finalRating;
+      this.ratingCategory=ratingCategory;
+      this.ratedAt=ratedAt;
+   }
+   public Ratinglog(){
+      
+   }
      
 }
