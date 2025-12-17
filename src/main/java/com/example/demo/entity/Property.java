@@ -32,7 +32,7 @@ public class Property{
         return address;
      }
      public void setaddress(String address){
-        this.addresss=address;
+        this.address=address;
      }
      public String getcity(){
         return city;
@@ -52,9 +52,9 @@ public class Property{
      public void setareaSqFt(Double areaSqFt){
         this.areaSqFt=areaSqFt;
      }
-    public Property(Long id,String name, String city,Double price, Double areaSqFt){
+    public Property(Long id,String title, String address,String city,Double price, Double areaSqFt){
       this.id=id;
-      this.name=name;
+      this.title=title;
       this.address=address;
       this.city=city;
       this.price=price;
