@@ -4,6 +4,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import java.time.LocalDateTime;
+
+@Entity
 public class RatingResult{
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -47,5 +49,15 @@ public class RatingResult{
      public void setratedAt(LocalDateTime ratedAt){
         this.ratedAt=ratedAt;
      }
+        public RatingResult(Long id,Property property,Double finalRating,String ratingCategory,LocalDateTime ratedAt){
+      this.id=id;
+      this.property=property;
+      this.finalRating=finalRating;
+      this.ratingCategory=ratingCategory;
+      this.ratedAt=ratedAt;
+   }
+   public RatingResult(){
+      
+   }
      
 }

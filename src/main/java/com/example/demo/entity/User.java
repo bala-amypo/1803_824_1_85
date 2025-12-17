@@ -45,14 +45,14 @@ public class User{
         this.role=role;
      }
    public User(Long id,String name,String email,String password,String role){
-      this.is=id;
+      this.id=id;
       this.name=name;
       this.email=email;
       this.password=password;
       this.role=role;
    }
    public User(){
-      
+
    }
 
 }
