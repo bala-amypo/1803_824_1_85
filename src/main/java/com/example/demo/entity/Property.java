@@ -54,9 +54,12 @@ public class Property{
      }
    public property(Long id,String name, String city,Double price, Double areaSqFt){
       this.id=id;
-      this.;
-      this.message=message;
-      this.loggedAt=loggedAt;
+      this.name=name;
+      this.address=address;
+      this.city=city;
+      this.price=price;
+      
+
    }
    public Ratinglog(){
       
