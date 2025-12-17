@@ -1,7 +1,10 @@
 package com.example.demo.entity;
-@
-public class User{
+import jakarta.persistence.Entity;
 
+@Entity
+public class User{
+   @Id
+   @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     private String name;
     @column(unique=true)
