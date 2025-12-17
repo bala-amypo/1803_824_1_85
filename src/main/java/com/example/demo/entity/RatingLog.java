@@ -45,9 +45,8 @@ public class RatingLog{
    public RatingLog(Long id,Property property,,String message,LocalDateTime loggedAt){
       this.id=id;
       this.property=property;
-      this.finalRating=finalRating;
-      this.ratingCategory=ratingCategory;
-      this.ratedAt=ratedAt;
+      this.message=message;
+      this.loggedAt=loggedAt;
    }
    public Ratinglog(){
       
