@@ -1,6 +1,8 @@
 package com.example.demo.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 @Entity
 public class User{
    @Id
@@ -42,6 +44,13 @@ public class User{
      public void setrole(String role){
         this.role=role;
      }
+   public User(Long id,String name,String email,String password,String role){
+      this.is=id;
+      this.name=name;
+      this.email=email;
+      this.password=password;
+      this.role=role;
+   }
+   public User
 
-}
 }
