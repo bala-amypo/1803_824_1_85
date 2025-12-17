@@ -1,6 +1,14 @@
 package com.example.demo.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+
+@Entity
 public class Property{
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     private String title;
     private String address;
@@ -44,5 +52,14 @@ public class Property{
      public void setareaSqFt(Double areaSqFt){
         this.areaSqFt=areaSqFt;
      }
+   public property(Long id,String name, String city,Double price, Double areaSqFt){
+      this.id=id;
+      this.;
+      this.message=message;
+      this.loggedAt=loggedAt;
+   }
+   public Ratinglog(){
+      
+   }
 
 }

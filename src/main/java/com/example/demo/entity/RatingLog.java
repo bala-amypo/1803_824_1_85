@@ -42,7 +42,7 @@ public class RatingLog{
         this.loggedAt=loggedAt;
      }
 
-   public RatingLog(Long id,Property property,,String message,LocalDateTime loggedAt){
+   public RatingLog(Long id,Property property,String message,LocalDateTime loggedAt){
       this.id=id;
       this.property=property;
       this.message=message;
