@@ -7,6 +7,7 @@ import jakarta.persistence.GenerationType;
 
 @Entity
 public class Property{
+   
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
