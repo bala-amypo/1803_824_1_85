@@ -52,7 +52,7 @@ public class Property{
      public void setareaSqFt(Double areaSqFt){
         this.areaSqFt=areaSqFt;
      }
-   public property(Long id,String name, String city,Double price, Double areaSqFt){
+    public Property(Long id,String name, String city,Double price, Double areaSqFt){
       this.id=id;
       this.name=name;
       this.address=address;

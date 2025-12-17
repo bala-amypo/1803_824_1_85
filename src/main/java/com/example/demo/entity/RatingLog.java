@@ -48,7 +48,7 @@ public class RatingLog{
       this.message=message;
       this.loggedAt=loggedAt;
    }
-   public Ratinglog(){
+   public RatingLog(){
       
    }
      
