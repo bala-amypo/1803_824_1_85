@@ -62,7 +62,7 @@ public class Property{
 
 
    }
-   public Ratinglog(){
+   public Property(){
       
    }
 

@@ -1,6 +1,14 @@
 package com.example.demo.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+
+@Entity
 public class FacilityScore{
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     private Property property;
     private Integer schoolProximity;
@@ -51,6 +59,20 @@ public class FacilityScore{
      public void getsafetyScore(Integer safetyScore){
         this.safetyScore=safetyScore;
      }
+
+   public property(Long id, Property property,Integer schoolProximity,Integer hospitalProximity,Integer transportAccess,Integer safetyScore){
+      this.id=id;
+      this.property=property;
+      this.f;
+      this.city=city;
+      this.price=price;
+      this.areaSqFt=areaSqFt;
+
+
+   }
+   public Property(){
+      
+   }
 }
 
      
