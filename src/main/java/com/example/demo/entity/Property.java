@@ -58,7 +58,8 @@ public class Property{
       this.address=address;
       this.city=city;
       this.price=price;
-      
+      this.areaSqFt=areaSqFt;
+
 
    }
    public Ratinglog(){
