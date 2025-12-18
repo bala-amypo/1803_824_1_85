@@ -26,7 +26,7 @@ public class FacilityScoreController {
     }
     
     
-    @GetMapping("{propertyId}")
+    @GetMapping("/{propertyId}")
     public FacilityScore getScoreByProperty(@PathVariable Long id) {
         return fs.getScoreByProperty(id);
     }
