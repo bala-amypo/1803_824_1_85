@@ -10,7 +10,7 @@ public class RatingResult{
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
-    private Property property;
+   //  private Property property;
     private Double finalRating;
     private String ratingCategory;
     private LocalDateTime ratedAt;
@@ -22,12 +22,12 @@ public class RatingResult{
      public void setid(Long id){
         this.id=id;
      }
-     public Property getproperty(){
-        return property;
-     }
-     public void setproperty(Property property){
-        this.property=property;
-     }
+   //   public Property getproperty(){
+   //      return property;
+   //   }
+   //   public void setproperty(Property property){
+   //      this.property=property;
+   //   }
 
       public Double getfinalRating(){
         return finalRating;
@@ -50,9 +50,9 @@ public class RatingResult{
         this.ratedAt=ratedAt;
      }
      
-    public RatingResult(Long id,Property property,Double finalRating,String ratingCategory,LocalDateTime ratedAt){
+   //  public RatingResult(Long id,Property property,Double finalRating,String ratingCategory,LocalDateTime ratedAt){
       this.id=id;
-      this.property=property;
+      // this.property=property;
       this.finalRating=finalRating;
       this.ratingCategory=ratingCategory;
       this.ratedAt=ratedAt;
