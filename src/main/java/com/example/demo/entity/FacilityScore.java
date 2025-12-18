@@ -9,7 +9,7 @@ import jakarta.persistence.GenerationType;
 public class FacilityScore{
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-  
+    private Long id;
     private Integer schoolProximity;
     private Integer hospitalProximity;
     private Integer transportAccess;
