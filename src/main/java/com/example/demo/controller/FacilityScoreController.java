@@ -19,12 +19,9 @@ public class FacilityScoreController {
     }
 
     @GetMapping("/{propertyId}")
-    public int first(Long credentialId){
-        return atrs.getLogs();
+    public int first(){
+        return fss.getLogs();
     }
 
-    @GetMapping
-    public List<AuditTrailRecord> second(){
-        return atrs.getAllLogs();
-    }
+    
 }
