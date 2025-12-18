@@ -12,15 +12,15 @@ import com.example.demo.service.FacilityScoreService;
 @RestController
 public class FacilityScoreController {
     @Autowired
-    FacilityService fs;
+     private FacilityService fss;
 
     @PostMapping("/{propertyId}")
     public  FacilityService addFacilityService(@RequestBody  FacilityService fss){
-        return fss.addScore(fs);
+        return fs.addScore(fss);
     }
 
     @GetMapping("/{propertyId}")
     public int first(){
-        return fss.getScoreByProperty(fs);
+        return fs.first();
     } 
 }
