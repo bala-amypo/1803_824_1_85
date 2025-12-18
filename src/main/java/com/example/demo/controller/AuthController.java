@@ -11,7 +11,7 @@ import com.example.demo.service.AuditTrailRecordService;
 @RestController
 public class AuthController {
     @Autowired
-    AuditTrailRecordService atrs;
+    UserService us;
 
     @PostMapping("/AuditTrail")
     public AuditTrailRecord addAuditTrailRecord(@RequestBody AuditTrailRecord atr){
