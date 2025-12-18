@@ -21,8 +21,8 @@ public class FacilityScoreController {
     FacilityScoreService fs;
 
     @PostMapping("/{propertyId}")
-    public FacilityScore addStudents(@RequestBody FacilityScore student){
-        return fs.addStudents(student);
+    public FacilityScore addScore(@RequestBody FacilityScore student){
+        return fs.addScore();
     }
     
     @GetMapping("/getStudents")
