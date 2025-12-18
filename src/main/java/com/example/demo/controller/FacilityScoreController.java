@@ -13,12 +13,12 @@ public class FacilityScoreController {
     @Autowired
     FacilityService fs;
 
-    @PostMapping("/AuditTrail")
-    public AuditTrailRecord addAuditTrailRecord(@RequestBody AuditTrailRecord atr){
-        return atrs.logEvent(atr);
+    @PostMapping("/{propertyId}")
+    public  FacilityService addFacilityService(@RequestBody  FacilityService fss){
+        return fss.logEvent(fss);
     }
 
-    @GetMapping("/")
+    @GetMapping("/{propertyId}")
     public int first(Long credentialId){
         return atrs.getLogs();
     }
