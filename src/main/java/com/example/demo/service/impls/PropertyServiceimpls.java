@@ -1,4 +1,4 @@
-package com.example.demo.service.impl;
+package com.example.demo.service.impls;
 
 import java.util.List;
 import org.springframwork.beans.factory.annotation.Autowired;
@@ -9,7 +9,7 @@ import com.example.demo.repository.PropertyRepository;
 import com.example.demo.service.PropertyService;
 
 @Service
-public class Propertyimpl implements PropertyService {
+public class PropertyServiceimpls implements PropertyService {
 
     @Autowired
     private PropertyRepository repo;
