@@ -12,12 +12,12 @@ public class FacilityScoreImpl implements FacilityScoreService {
     @Autowired
     private FacilityScoreRepository repository;
 
-    @Override
+    
     public FacilityScore addScore(FacilityScore score) {
         return repository.save(score);
     }
 
-    @Override
+   
     public FacilityScore getScoreById(Long id) {
         return repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("FacilityScore not found with id: " + id));
