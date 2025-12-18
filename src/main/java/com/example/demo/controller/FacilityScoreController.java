@@ -21,14 +21,14 @@ public class FacilityScoreController {
     FacilityScoreService fs;
 
     @PostMapping("/{propertyId}")
-    public FacilityScore addScore(@RequestBody FacilityScore facility ){
-        return fs.addScore(facility);
+    public FacilityScore addScore(@RequestBody FacilityScore facilityscore ){
+        return fs.addScore(facilityscore);
     }
     
     
     @GetMapping("{propertyId}")
-    public FacilityScore getScoreByProperty() {
-        return fs.getScoreByProperty();
+    public FacilityScore getScoreByProperty(Long id) {
+        return fs.getScoreByProperty(id);
     }
 
 } 
