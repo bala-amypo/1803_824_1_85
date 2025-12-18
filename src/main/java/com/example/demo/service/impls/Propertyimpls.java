@@ -1,8 +1,8 @@
-package com.example.demo.controller;
+package com.example.demo.service.impl;
 
 import java.util.List;
-import org.Springframwork.beans.factory.annotation.Autowired;
-import org.Springframwork.stereotype.Service;
+import org.springframwork.beans.factory.annotation.Autowired;
+import org.springframwork.stereotype.Service;
 
 import com.example.demo.entity.Property;
 import com.example.demo.repository.PropertyRepository;
