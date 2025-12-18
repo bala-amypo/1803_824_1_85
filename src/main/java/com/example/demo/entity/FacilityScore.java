@@ -9,8 +9,7 @@ import jakarta.persistence.GenerationType;
 public class FacilityScore{
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long id;
-    private Property property;
+  
     private Integer schoolProximity;
     private Integer hospitalProximity;
     private Integer transportAccess;
@@ -23,14 +22,6 @@ public class FacilityScore{
    public void setid(Long id){
         this.id=id;
      }
-     
-
-   public Property getproperty(){
-        return property;
-     }
-   public void getproperty(Property property){
-        this.property=property;
-     } 
 
    public Integer setschoolProximity(){
         return schoolProximity;
@@ -61,9 +52,9 @@ public class FacilityScore{
         this.safetyScore=safetyScore;
      }
 
-   public FacilityScore(Long id, Property property,Integer schoolProximity,Integer hospitalProximity,Integer transportAccess,Integer safetyScore){
+   public FacilityScore(Long id, Integer schoolProximity,Integer hospitalProximity,Integer transportAccess,Integer safetyScore){
       this.id=id;
-      this.property=property;
+      
       this.schoolProximity=schoolProximity;
       this.hospitalProximity=hospitalProximity;
       this.transportAccess=transportAccess;
