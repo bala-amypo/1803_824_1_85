@@ -1,5 +1,5 @@
-package com.example.demo.exception;
+// package com.example.demo.exception;
 
-public class ApiError{
+// public class ApiError{
     
-}
+// }
