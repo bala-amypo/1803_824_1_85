@@ -1,8 +1,9 @@
 package com.example.demo.service.impls;
 
 import java.util.List;
-import org.springframwork.beans.factory.annotation.Autowired;
-import org.springframwork.stereotype.Service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.Property;
 import com.example.demo.repository.PropertyRepository;
