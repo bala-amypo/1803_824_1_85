@@ -2,7 +2,7 @@ package com.example.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,15 +12,15 @@ import com.example.demo.service.FacilityScoreService;
 @RestController
 public class FacilityScoreController {
     @Autowired
-     private FacilityService fss;
+    FacilityService fs;
 
     @PostMapping("/{propertyId}")
     public  FacilityService addFacilityService(@RequestBody  FacilityService fss){
-        return fs.addScore(fss);
+        return fss.addScore(fs);
     }
 
     @GetMapping("/{propertyId}")
     public int first(){
-        return fs.first();
+        return fss.getScoreByProperty(fs);
     } 
 }
