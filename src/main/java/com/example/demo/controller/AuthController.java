@@ -12,10 +12,19 @@ import com.example.demo.service.UserService;
 public class AuthController {
     @Autowired
     UserService us;
+    
 
-    @PostMapping("/Register")
+    @PostMapping("/register")
     public User addUser(@RequestBody User us){
-        return us.logEvent(atr);
+        return us.logEvent(us);
+    }
+
+    Authservice as;
+
+    
+    @PostMapping("/login")
+    public User addUser(@RequestBody User as){
+        return as.logEvent(as);
     }
 
     
