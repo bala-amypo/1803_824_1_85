@@ -11,17 +11,17 @@ import com.example.demo.service.FacilityService;
 @RestController
 public class FacilityScoreController {
     @Autowired
-    UserService us;
+    FacilityService fs;
     
 
     @PostMapping("/register")
-    public User addUser(@RequestBody User as){
-        return us.addScore(as);
+    public FacilityScore addfacility(@RequestBody User fss){
+        return fs.addScore(fss);
     }
 
     @PostMapping("/login")
-    public User addUser(@RequestBody User as){
-        return us.getScore(as);
+    public FacilityScore addsfacility(@RequestBody User uss){
+        return fs.getScore(fss);
     }
 
     
