@@ -10,7 +10,6 @@ public class RatingResult{
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
-  
     private Double finalRating;
     private String ratingCategory;
     private LocalDateTime ratedAt;
@@ -46,7 +45,6 @@ public class RatingResult{
      
     public RatingResult(Long id,Double finalRating,String ratingCategory,LocalDateTime ratedAt){
       this.id=id;
-     
       this.finalRating=finalRating;
       this.ratingCategory=ratingCategory;
       this.ratedAt=ratedAt;
