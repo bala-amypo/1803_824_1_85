@@ -17,46 +17,47 @@ public class FacilityScore{
     private Integer safetyScore;
    
      
-     public Long getid(){
+   public Long getid(){
         return id;
      }
-     public void setid(Long id){
+   public void setid(Long id){
         this.id=id;
      }
      
-     public Property getproperty(){
+
+   public Property getproperty(){
         return property;
      }
-
-     public void getproperty(Property property){
+   public void getproperty(Property property){
         this.property=property;
+     } 
 
-     } public Integer setschoolProximity(){
+   public Integer setschoolProximity(){
         return schoolProximity;
      }
-
-     public void getschoolProximity(Integer schoolProximity){
+   public void getschoolProximity(Integer schoolProximity){
         this.schoolProximity=schoolProximity;
      }
-      public Integer sethospitalProximity(){
+
+   public Integer sethospitalProximity(){
         return hospitalProximity;
      }
 
-     public void gethospitalProximity(Integer hospitalProximity){
+   public void gethospitalProximity(Integer hospitalProximity){
         this.hospitalProximity=hospitalProximity;
      }
-      public Integer settransportAccess(){
+
+   public Integer settransportAccess(){
         return transportAccess;
      }
-
-     public void gettransportAccess(Integer transportAccess){
+   public void gettransportAccess(Integer transportAccess){
         this.transportAccess=transportAccess;
      }
-      public Integer setsafetyScore(){
+
+   public Integer setsafetyScore(){
         return safetyScore;
      }
-
-     public void getsafetyScore(Integer safetyScore){
+   public void getsafetyScore(Integer safetyScore){
         this.safetyScore=safetyScore;
      }
 
@@ -68,11 +69,12 @@ public class FacilityScore{
       this.transportAccess=transportAccess;
       this.safetyScore=safetyScore;
    }
-   public FacilityScore(){
-      
-   }
 
+   public FacilityScore(){
+   }
 }
+
+
      
     
      
