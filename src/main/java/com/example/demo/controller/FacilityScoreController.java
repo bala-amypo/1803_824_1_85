@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springFramework.web.bind.annotation.Ge
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,7 +22,5 @@ public class FacilityScoreController {
     @GetMapping("/{propertyId}")
     public int first(){
         return fss.getScoreByProperty(fs);
-    }
-
-    
+    } 
 }
