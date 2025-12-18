@@ -15,12 +15,12 @@ public class FacilityScoreController {
 
     @PostMapping("/{propertyId}")
     public  FacilityService addFacilityService(@RequestBody  FacilityService fss){
-        return fss.logEvent(fss);
+        return fss.addScore(fs);
     }
 
     @GetMapping("/{propertyId}")
     public int first(){
-        return fss.getLogs();
+        return fss.getScoreByProperty(fs);
     }
 
     
