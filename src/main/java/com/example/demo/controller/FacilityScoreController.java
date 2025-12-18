@@ -21,18 +21,14 @@ public class FacilityScoreController {
     FacilityScoreService fs;
 
     @PostMapping("/{propertyId}")
-    public FacilityScore addScore(@RequestBody FacilityScore  ){
-        return fs.addScore();
+    public FacilityScore addScore(@RequestBody FacilityScore facility ){
+        return fs.addScore(facility);
     }
     
-    @GetMapping("/getStudents")
-    public List<StudentEntity> getStudents() {
-        return ser.getStudents();
-    }
     
-    @GetMapping("/getStudent/{id}")
-    public StudentEntity getStudentById(@PathVariable Long id) {
-        return ser.getStudentById(id);
+    @GetMapping("{propertyId}")
+    public FacilityScore getScoreByProperty() {
+        return fs.getScoreByProperty();
     }
 
 } 
