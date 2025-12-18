@@ -11,7 +11,7 @@ public class RatingLog{
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
-    private Property property;
+    
     private String message;
     private LocalDateTime loggedAt;
     
@@ -22,12 +22,7 @@ public class RatingLog{
      public void setid(Long id){
         this.id=id;
      }
-     public Property setproperty(){
-        return property;
-     }
-     public void getproperty(Property property){
-        this.property=property;
-     }
+    
      public String getmessage(){
         return message;
      }
@@ -42,9 +37,9 @@ public class RatingLog{
         this.loggedAt=loggedAt;
      }
 
-   public RatingLog(Long id,Property property,String message,LocalDateTime loggedAt){
+   public RatingLog(Long id,,String message,LocalDateTime loggedAt){
       this.id=id;
-      this.property=property;
+      
       this.message=message;
       this.loggedAt=loggedAt;
    }
