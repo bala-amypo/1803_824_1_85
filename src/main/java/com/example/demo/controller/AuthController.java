@@ -5,26 +5,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.entity.AuditTrailRecord;
-import com.example.demo.service.AuditTrailRecordService;
+import com.example.demo.entity.User;
+import com.example.demo.service.UserService;
 
 @RestController
 public class AuthController {
     @Autowired
     UserService us;
 
-    @PostMapping("/AuditTrail")
-    public AuditTrailRecord addAuditTrailRecord(@RequestBody AuditTrailRecord atr){
-        return atrs.logEvent(atr);
+    @PostMapping("/Register")
+    public User addUser(@RequestBody User us){
+        return us.logEvent(atr);
     }
 
-    @GetMapping("/")
-    public int first(Long credentialId){
-        return atrs.getLogs();
-    }
-
-    @GetMapping
-    public List<AuditTrailRecord> second(){
-        return atrs.getAllLogs();
-    }
+    
 }
