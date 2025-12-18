@@ -9,7 +9,7 @@ import com.example.demo.repository.PropertyRepository;
 import com.example.demo.service.PropertyService;
 
 @Service
-public class PropertyServiceImpl implements PropertyService {
+public class Propertyimpl implements PropertyService {
 
     @Autowired
     private PropertyRepository repo;
