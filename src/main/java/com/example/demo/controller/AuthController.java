@@ -15,16 +15,13 @@ public class AuthController {
     
 
     @PostMapping("/register")
-    public User addUser(@RequestBody User us){
-        return us.logEvent(us);
+    public User addUser(@RequestBody User as){
+        return us.logEvent(as);
     }
 
-    Authservice as;
-
-    
     @PostMapping("/login")
     public User addUser(@RequestBody User as){
-        return as.logEvent(as);
+        return us.logEvent(as);
     }
 
     
