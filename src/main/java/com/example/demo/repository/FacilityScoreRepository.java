@@ -5,7 +5,7 @@
 
     import com.example.demo.entity.FacilityScore;
 
-    import java.util.
+    import java.util.Long;
 
     @Repository
     public interface FacilityScoreRepository extends JpaRepository<FacilityScore, Long> {
