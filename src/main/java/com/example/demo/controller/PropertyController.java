@@ -13,6 +13,7 @@ import com.example.demo.service.PropertyService;
 
 @RestController
 @RequestMapping("/properties")
+
 public class PropertyController {
 
     @Autowired
