@@ -37,7 +37,7 @@ public class RatingLog{
         this.loggedAt=loggedAt;
      }
 
-   public RatingLog(Long id,,String message,LocalDateTime loggedAt){
+   public RatingLog(Long id,String message,LocalDateTime loggedAt){
       this.id=id;
       
       this.message=message;
