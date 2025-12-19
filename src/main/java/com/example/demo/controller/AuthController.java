@@ -12,12 +12,12 @@ import com.example.demo.entity.User;
 import com.example.demo.service.UserService;
 
 @RestController
-@RequestMapping("/properties")
+@RequestMapping("/auth")
 
-public class PropertyController {
+public class AuthController {
 
     @Autowired
-    private PropertyService service;
+    private UserService service;
 
     @PostMapping
     public Property addProperty(@RequestBody Property property) {
