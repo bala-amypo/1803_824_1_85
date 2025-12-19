@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,8 +25,8 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public User findByEmail(@RequestBody Email email) {
-        return service.findByEmail(email);
+    public User login(@RequestBody User user) {
+        return service.findByEmail(user.getEmail());
     }
 
     
