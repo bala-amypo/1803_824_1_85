@@ -9,7 +9,7 @@ import com.example.demo.service.UserService;
 
 @Service
 public class UserServiceimpls implements UserService {
-
+    
     @Autowired
     public UserRepository repo;
 
@@ -19,7 +19,7 @@ public class UserServiceimpls implements UserService {
     }
 
     @Override
-    public User (String email) {
-        return repo.findByEmail(email);
+    public User FindByEmail(User user) {
+        return repo.findByEmail(user.getemail());
     }
 }
