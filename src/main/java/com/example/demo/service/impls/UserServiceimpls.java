@@ -10,18 +10,18 @@ import com.example.demo.repository.PropertyRepository;
 import com.example.demo.service.PropertyService;
 
 @Service
-public class PropertyServiceImpl implements PropertyService {
+public class UserServiceimpls implements UserService {
 
     @Autowired
-    private PropertyRepository repo;
+    private UserRepository repo;
 
     @Override
-    public Property addProperty(Property property) {
-        return repo.save(property);
+    public Property register(User user) {
+        return repo.save(user);
     }
 
     @Override
-    public List<Property> getAllProperties() {
-        return repo.find();
+    public List<Property> findByemail() {
+        return repo.findAll();
     }
 }
