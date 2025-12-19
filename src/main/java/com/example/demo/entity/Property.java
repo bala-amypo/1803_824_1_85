@@ -4,7 +4,7 @@ package com.example.demo.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.NotNull;
+import jakarta.validation.constraints.NotNull;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 
@@ -17,13 +17,13 @@ public class Property{
     private Long id;
     @NotNull
     private String title;
-    @NotNull;
+    @NotNull
     private String address;
-    @NotNull;
+    @NotNull
     private String city;
-    @NotNull;
+    @NotNull
     private Double price;
-    @NotNull;
+    @NotNull
     private Double  areaSqFt;
      
      public Long getid(){

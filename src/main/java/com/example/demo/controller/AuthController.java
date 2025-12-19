@@ -24,8 +24,8 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public User login(@RequestBody Long user) {
-        return service.findByEmail(user);
+    public User login(@RequestBody User user) {
+        return service.findByEmail(user.ger);
     }
 
     
