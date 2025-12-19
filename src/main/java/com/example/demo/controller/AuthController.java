@@ -13,11 +13,10 @@ import com.example.demo.service.UserService;
 
 @RestController
 @RequestMapping("/auth")
-
 public class AuthController {
 
     @Autowired
-    private UserService service;
+    public UserService service;
 
     @PostMapping("/register")
     public User registers(@RequestBody User user) {
