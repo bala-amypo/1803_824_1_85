@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.entity.Property;
-import com.example.demo.repository.PropertyRepository;
-import com.example.demo.service.PropertyService;
+import com.example.demo.entity.User;
+import com.example.demo.repository.UserRepository;
+import com.example.demo.service.UserService;
 
 @Service
 public class UserServiceimpls implements UserService {
@@ -16,12 +16,12 @@ public class UserServiceimpls implements UserService {
     private UserRepository repo;
 
     @Override
-    public Property addProperty(Property property) {
-        return repo.save(property);
+    public User register(User user) {
+        return repo.save(user);
     }
 
     @Override
-    public List<Property> getAllProperties() {
+    public User findByEmail() {
         return repo.findAll();
     }
 }
