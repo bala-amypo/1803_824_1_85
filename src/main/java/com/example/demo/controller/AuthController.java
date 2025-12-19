@@ -19,13 +19,15 @@ public class AuthController {
     @Autowired
     private UserService service;
 
-    @PostMapping
-    public Property addProperty(@RequestBody Property property) {
-        return service.addProperty(property);
+    @PostMapping("/register")
+    public User register(@RequestBody User user) {
+        return service.register(user);
     }
 
-    @GetMapping
-    public List<Property> getAll() {
-        return service.getAllProperties();
+    @PostMapping("/login")
+    public User findByEmail(@RequestBody Email u) {
+        return service.findByEmail(user);
     }
+
+    
 }
