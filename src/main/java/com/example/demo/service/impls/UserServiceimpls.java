@@ -1,6 +1,6 @@
 package com.example.demo.service.impls;
 
-import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +22,6 @@ public class UserServiceimpls implements UserService {
 
     @Override
     public User findByEmail(String email) {
-        return repo.findByEmail();
+        return repo.findByEmail(email);
     }
 }
