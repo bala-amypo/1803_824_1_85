@@ -20,13 +20,13 @@ public class AuthController {
     private UserService service;
 
     @PostMapping("/register")
-    public User register(@RequestBody User user) {
+    public User registers(@RequestBody User user) {
         return service.register(user);
     }
 
     @PostMapping("/login")
     public User login(@RequestBody User user) {
-        return service.findByEmail(user.getemail());
+        return service.findByEmails(user.getemail());
     }
 
     
