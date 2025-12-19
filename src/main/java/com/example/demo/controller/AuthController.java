@@ -25,7 +25,7 @@ public class AuthController {
 
     @PostMapping("/login")
     public User login(@RequestBody User user) {
-        return service.login(user.getemail());
+        return service.findByemail(user.getemail());
     }
 
     
