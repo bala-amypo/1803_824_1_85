@@ -4,7 +4,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Column;
-
 @Entity
 public class User{
    @Id
@@ -48,10 +47,10 @@ public class User{
      }
    public User(Long id,String name,String email,String password,String role){
       this.id=id;
-      this.name="name";
-      this.email="email";
-      this.password="password";
-      this.role="role";
+      this.name=name;
+      this.email=email;
+      this.password=password;
+      this.role=role;
    }
    public User(){
 
