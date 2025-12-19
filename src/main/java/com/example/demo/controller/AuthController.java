@@ -11,54 +11,22 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.entity.User;
 import com.example.demo.service.UserService;
 
-// @RestController
-// @RequestMapping("/auth")
-// public class AuthController {
-
-//     @Autowired
-//     public UserService service;
-
-//     @PostMapping("/register")
-//     public User register(@RequestBody User user) {
-//         return service.register(user);
-//     }
-
-//     @PostMapping("/login")
-//     public User login(@RequestBody User user) {
-//         return service.findByEmail(user.getemail());
-//     }
-
-    
-// }
-
-
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
 
     @Autowired
-    private UserService service;
+    public UserService service;
 
-    
     @PostMapping("/register")
-    public ResponseEntity<User> register(@RequestBody User user) {
-        // Ensure the user has valid data before saving
-        if (user.getName() == null || user.getEmail() == null || user.getPassword() == null) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST); 
-        }
+    public User register(@RequestBody User user) {
+        return service.register(user);
+    }
 
-        User savedUser = service.register(user);
-        return new ResponseEntity<>(savedUser, HttpStatus.CREATED); 
+    @PostMapping("/login")
+    public User login(@RequestBody User user) {
+        return service.findByEmail(user.getemail());
     }
 
     
-    @PostMapping("/login")
-    public ResponseEntity<User> login(@RequestBody User user) {
-        User existingUser = service.findByEmail(user.getEmail());
-        if (existingUser == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
-        }
-        return new ResponseEntity<>(existingUser, HttpStatus.OK); 
-}
-
 }
