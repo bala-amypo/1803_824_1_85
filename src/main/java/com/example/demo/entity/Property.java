@@ -6,7 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.NotNull;
+
 
 @Entity
 public class Property{
@@ -14,6 +14,7 @@ public class Property{
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
+    
     private String title;
     private String address;
     private String city;
@@ -27,7 +28,7 @@ public class Property{
         this.id=id;
      }
 
-     @NotNull
+     
      public String gettitle(){
         return title;
      }
