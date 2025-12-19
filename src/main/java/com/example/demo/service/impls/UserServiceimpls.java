@@ -1,13 +1,13 @@
-ackage com.example.demo.service.impl;
+package com.example.demo.service.impl;
 
 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.entity.Property;
-import com.example.demo.repository.PropertyRepository;
-import com.example.demo.service.PropertyService;
+import com.example.demo.entity.User;
+import com.example.demo.repository.UserRepository;
+import com.example.demo.service.UserService;
 
 @Service
 public class UserServiceimpls implements UserService {
@@ -21,7 +21,7 @@ public class UserServiceimpls implements UserService {
     }
 
     @Override
-    public List<Property> findByemail() {
-        return repo.findAll();
+    public List<Property> findByemail(User user) {
+        return repo.findbyemail(user);
     }
 }
