@@ -1,4 +1,4 @@
-package com.example.demo.service.impl;
+package com.example.demo.service.impls;
 
 
 
@@ -21,7 +21,7 @@ public class UserServiceimpls implements UserService {
     }
 
     @Override
-    public List<Property> findByemail(User user) {
-        return repo.findbyemail(user);
+    public List<Property> findByemail(String email) {
+        return repo.findByemail(email);
     }
 }
