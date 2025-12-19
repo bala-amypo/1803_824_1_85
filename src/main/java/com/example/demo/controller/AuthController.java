@@ -1,3 +1,4 @@
+
 package com.example.demo.controller;
 
 
@@ -25,8 +26,11 @@ public class AuthController {
 
     @PostMapping("/login")
     public User login(@RequestBody User user) {
-        return service.findByemail(user.getemail());
+        return service.findByEmail(user.getemail());
     }
+
+    
+}
 
     
 }
