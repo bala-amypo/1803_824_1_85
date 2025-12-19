@@ -16,12 +16,12 @@ public class UserServiceimpls implements UserService {
     private UserRepository repo;
 
     @Override
-    public Property register(User user) {
+    public User register(User user) {
         return repo.save(user);
     }
 
     @Override
-    public List<Property> findByemail(String email) {
+    public User findByemail(String email) {
         return repo.findByemail(email);
     }
 }
