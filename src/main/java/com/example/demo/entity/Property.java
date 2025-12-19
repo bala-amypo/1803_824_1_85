@@ -21,7 +21,7 @@ public class Property{
     private String address;
     @NotNull
     private String city;
-    @NotNull
+    @NotNull;
     private Double price;
     @NotNull
     private Double  areaSqFt;
