@@ -17,11 +17,11 @@ public class UserServiceimpls implements UserService {
 
     @Override
     public User register(User user) {
-        return repo.save(user);
+        return repo.register(user);
     }
 
     @Override
-    public User findByemail(User user) {
-        return repo.findByEmail(user);
+    public User findByEmail(User user) {
+        return repo.findByEmail(user.getemail());
     }
 }
