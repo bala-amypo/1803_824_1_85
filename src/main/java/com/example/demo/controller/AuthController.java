@@ -1,13 +1,12 @@
-
 package com.example.demo.controller;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.beans.factory.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+
+
 
 import com.example.demo.entity.User;
 import com.example.demo.service.UserService;
@@ -17,7 +16,7 @@ import com.example.demo.service.UserService;
 public class AuthController {
 
     @Autowired
-    public UserService service;
+    private UserService service;
 
     @PostMapping("/register")
     public User register(@RequestBody User user) {
@@ -26,11 +25,6 @@ public class AuthController {
 
     @PostMapping("/login")
     public User login(@RequestBody User user) {
-        return service.findByEmail(user.getemail());
+        return service.findByEmail(user.getEmail());
     }
-
-    
 }
-
-    
-
