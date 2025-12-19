@@ -1,8 +1,5 @@
 package com.example.demo.controller;
 
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,22 +8,26 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.entity.User;
 import com.example.demo.service.UserService;
 
+
+
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
 
-    @Autowired
-    public UserService service;
+    private final UserService service;
+
+    public AuthController(UserService service) {
+        this.service = service;
+    }
 
     @PostMapping("/register")
-    public User register(@RequestBody User user) {
-        return service.register(user);
+    public User register(@RequestBody RegisterRequest req) {
+        User u = new User();
+        u.setEmail(req.getEmail());
+        u.setPassword(req.getPassword());
+        return service.register(u);
     }
+}
 
-    @PostMapping("/login")
-    public User login(@RequestBody User user) {
-        return service.findByEmail(user.getemail());
-    }
 
     
-}
