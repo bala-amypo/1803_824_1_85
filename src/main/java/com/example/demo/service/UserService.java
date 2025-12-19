@@ -1,10 +1,10 @@
 
 package com.example.demo.service;
 
-
+import java.util.List;
 import com.example.demo.entity.User;
 
 public interface UserService {
     User register(User user);
-    User findByEmail(String email);
+    List<User> findByEmail(String email);
 }
