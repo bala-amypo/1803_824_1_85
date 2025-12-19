@@ -13,7 +13,7 @@ import com.example.demo.service.UserService;
 public class UserServiceimpls implements UserService {
 
     @Autowired
-    private UserRepository repo;
+    public UserRepository repo;
 
     @Override
     public User register(User user) {
