@@ -93,7 +93,7 @@
 //     }
 // }
 
-package com.example.demo.service.impl;
+package com.example.demo.service.impls;
 
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -108,7 +108,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class FacilityScoreServiceImpl implements FacilityScoreService {
+public class FacilityScoreServiceimpls implements FacilityScoreService {
 
     @Autowired
     private FacilityScoreRepository facilityScoreRepository;
