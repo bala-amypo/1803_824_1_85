@@ -5,6 +5,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.ManytoOne;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 
 @Entity
 public class FacilityScore{
@@ -13,9 +15,17 @@ public class FacilityScore{
     private Long id;
     @ManytoOne
     private Property property;
+    @Min(value=0)
+    @Max(value=10)
     private Integer schoolProximity;
+    @Min(value=0)
+    @Max(value=10)
     private Integer hospitalProximity;
+    @Min(value=0)
+    @Max(value=10)
     private Integer transportAccess;
+    @Min(value=0)
+    @Max(value=10)
     private Integer safetyScore;
    
      
