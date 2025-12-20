@@ -1,4 +1,4 @@
-package com.example.demo.service.impl;
+package com.example.demo.service.impls;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,7 +11,7 @@ import com.example.demo.repository.RatingResultRepository;
 import com.example.demo.service.RatingResultService;
 
 @Service
-public class RatingResultServiceIimpls implements RatingResultService {
+public class RatingResultServiceimpls implements RatingResultService {
 
     private final RatingResultRepository ratingResultRepository;
     private final PropertyRepository propertyRepository;
