@@ -14,8 +14,7 @@ public class FacilityScoreServiceimpls implements FacilityScoreService {
     private final FacilityScoreRepository facilityScoreRepository;
     private final PropertyRepository propertyRepository;
 
-    public FacilityScoreServiceImpl(FacilityScoreRepository facilityScoreRepository,
-                                    PropertyRepository propertyRepository) {
+    public FacilityScoreServiceimpls(FacilityScoreRepository facilityScoreRepository,PropertyRepository propertyRepository) {
         this.facilityScoreRepository = facilityScoreRepository;
         this.propertyRepository = propertyRepository;
     }
