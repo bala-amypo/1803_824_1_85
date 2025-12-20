@@ -1,50 +1,99 @@
+// package com.example.demo.entity;
+
+// import jakarta.persistence.Entity;
+// import jakarta.persistence.Id;
+// import jakarta.persistence.GeneratedValue;
+// import jakarta.persistence.GenerationType;
+// import java.time.LocalDateTime;
+
+// @Entity
+//public class RatingLog{
+//     @Id
+//     @GeneratedValue(strategy=GenerationType.IDENTITY)
+//     private Long id;
+    
+//     private String message;
+//     private LocalDateTime loggedAt;
+    
+     
+//     public Long getid(){
+//         return id;
+//      }
+//      public void setid(Long id){
+//         this.id=id;
+//      }
+    
+//      public String getmessage(){
+//         return message;
+//     }
+//      public void setmessage(String message){
+//         this.message=message;
+//      }
+     
+//      public LocalDateTime getloggedAt(){
+//         return loggedAt;
+//      }
+//      public void setloggedAt(LocalDateTime loggedAt){
+//         this.loggedAt=loggedAt;
+//      }
+
+//    public RatingLog(Long id,String message,LocalDateTime loggedAt){
+//       this.id=id;
+      
+//       this.message=message;
+//       this.loggedAt=loggedAt;
+//    }
+//    public RatingLog(){
+      
+//    }
+     
+// }
+
+
 package com.example.demo.entity;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Column;
+import jakarta.persistence.PrePersist;
 import java.time.LocalDateTime;
 
 @Entity
-public class RatingLog{
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long id;
-    
-    private String message;
-    private LocalDateTime loggedAt;
-    
-     
-     public Long getid(){
-        return id;
-     }
-     public void setid(Long id){
-        this.id=id;
-     }
-    
-     public String getmessage(){
-        return message;
-     }
-     public void setmessage(String message){
-        this.message=message;
-     }
-     
-     public LocalDateTime getloggedAt(){
-        return loggedAt;
-     }
-     public void setloggedAt(LocalDateTime loggedAt){
-        this.loggedAt=loggedAt;
-     }
+public class RatingLog {
 
-   public RatingLog(Long id,String message,LocalDateTime loggedAt){
-      this.id=id;
-      
-      this.message=message;
-      this.loggedAt=loggedAt;
-   }
-   public RatingLog(){
-      
-   }
-     
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "log_id")
+    private Long id;
+
+    @OneToOne
+    @JoinColumn(name = "property_id", nullable = false)
+    private Property property;
+
+    @Column(name = "message", nullable = false)
+    private String message;
+
+    @Column(name = "logged_at", nullable = false)
+    private LocalDateTime loggedAt;
+
+    @PrePersist
+    protected void onCreate() {
+        loggedAt = LocalDateTime.now();
+    }
+
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
+    public Property getProperty() { return property; }
+    public void setProperty(Property property) { this.property = property; }
+
+    public String getMessage() { return message; }
+    public void setMessage(String message) { this.message = message; }
+
+    public LocalDateTime getLoggedAt() { return loggedAt; }
+    public void setLoggedAt(LocalDateTime loggedAt) { this.loggedAt = loggedAt; }
 }
