@@ -47,8 +47,7 @@ public class FacilityScoreServiceimpls implements FacilityScoreService {
 
     @Override
     public List<FacilityScore> getScoresByPropertyId(Long propertyId) {
-        Optional<FacilityScore> scoreOpt = facilityScoreRepository.findByPropertyId(propertyId);
-        return scoreOpt.map(List::of).orElse(List.of());
+        return facilityScoreRepository.findAllByProperty_Id(propertyId);
     }
 
     @Override
