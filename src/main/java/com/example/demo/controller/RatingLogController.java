@@ -14,7 +14,7 @@ import java.util.List;
 @RequestMapping("/logs")
 public class RatingLogController {
 
-    private final RatingLogService ratingLogService;
+    public final RatingLogService ratingLogService;
 
     public RatingLogController(RatingLogService ratingLogService) {
         this.ratingLogService = ratingLogService;
