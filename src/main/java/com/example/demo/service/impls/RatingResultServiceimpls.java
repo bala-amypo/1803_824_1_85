@@ -11,15 +11,13 @@ import com.example.demo.repository.RatingResultRepository;
 import com.example.demo.service.RatingResultService;
 
 @Service
-public class RatingResultServiceImpl implements RatingResultService {
+public class RatingResultServiceIimpls implements RatingResultService {
 
     private final RatingResultRepository ratingResultRepository;
     private final PropertyRepository propertyRepository;
     private final FacilityScoreRepository facilityScoreRepository;
 
-    public RatingResultServiceImpl(RatingResultRepository ratingResultRepository,
-                                   PropertyRepository propertyRepository,
-                                   FacilityScoreRepository facilityScoreRepository) {
+    public RatingResultServiceimpls(RatingResultRepository ratingResultRepository,PropertyRepository propertyRepository,FacilityScoreRepository facilityScoreRepository) {
         this.ratingResultRepository = ratingResultRepository;
         this.propertyRepository = propertyRepository;
         this.facilityScoreRepository = facilityScoreRepository;
