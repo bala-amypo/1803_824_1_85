@@ -26,6 +26,13 @@ public class FacilityScore{
         this.id=id;
      }
 
+     public Property setProperty(){
+        return safetyScore;
+     }
+   public void getProperty(Property property){
+        this.safetyScore=safetyScore;
+     }
+
    public Integer setSchoolProximity(){
         return schoolProximity;
      }
@@ -55,7 +62,7 @@ public class FacilityScore{
         this.safetyScore=safetyScore;
      }
 
-   public FacilityScore(Long id,Pr Integer schoolProximity,Integer hospitalProximity,Integer transportAccess,Integer safetyScore){
+   public FacilityScore(Long id,Property property, Integer schoolProximity,Integer hospitalProximity,Integer transportAccess,Integer safetyScore){
       this.id=id;
       this.property=property;
       this.schoolProximity=schoolProximity;
