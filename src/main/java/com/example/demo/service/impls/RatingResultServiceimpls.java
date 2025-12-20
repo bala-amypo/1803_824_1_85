@@ -1,4 +1,4 @@
-package com.example.demo.service.impl;
+package com.example.demo.service.impls;
 
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ import com.example.demo.service.RatingResultService;
 import java.util.List;
 
 @Service
-public class RatingResultServiceImpl implements RatingResultService {
+public class RatingResultServiceimpls implements RatingResultService {
 
     @Autowired
     private RatingResultRepository ratingResultRepository;
