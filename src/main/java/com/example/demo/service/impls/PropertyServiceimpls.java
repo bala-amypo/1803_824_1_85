@@ -37,7 +37,7 @@ import com.example.demo.service.PropertyService;
 import java.util.List;
 
 @Service
-public class PropertyServiceimpls implements PropertyService {
+public class PropertyServiceimpls implements PropertyService {  // make class name consistent
 
     @Autowired
     private PropertyRepository repository;
@@ -60,14 +60,14 @@ public class PropertyServiceimpls implements PropertyService {
 
     @Override
     public Property updateProperty(Long id, Property property) {
-        Property existing = getPropertyById(id);  // fetch existing
-        existing.setName(property.getName());     // update fields
+        Property existing = getPropertyById(id);
+        existing.setName(property.getName());
         return repository.save(existing);
     }
 
     @Override
     public void deleteProperty(Long id) {
-        Property existing = getPropertyById(id);  // ensure it exists
+        Property existing = getPropertyById(id);
         repository.delete(existing);
     }
 }
