@@ -94,7 +94,8 @@ public class RatingResult {
     }
 
    
-    public RatingResult(Property property, Double finalRating, String ratingCategory) {
+    public RatingResult(Long id,Property property, Double finalRating, String ratingCategory) {
+        this.id=id;
         this.property = property;
         this.finalRating = finalRating;
         this.ratingCategory = ratingCategory;
@@ -105,7 +106,7 @@ public class RatingResult {
         this.calculatedAt = LocalDateTime.now();
     }
 
-    // ===== Getters & Setters =====
+    
 
     public Long getId() {
         return id;
