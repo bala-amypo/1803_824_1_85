@@ -16,7 +16,7 @@ public class PropertyServiceimpls implements PropertyService {
     private PropertyRepository repo;
 
     @Override
-    public FacilityScore addProperty(Property property) {
+    public FacilityScore addScore(Property property) {
         return repo.save(property);
     }
 
