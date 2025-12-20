@@ -1,53 +1,13 @@
-
-// // package com.example.demo.repository;
-
-// // import com.example.demo.entity.FacilityScore;
-// // import org.springframework.data.jpa.repository.JpaRepository;
-// // import java.util.List;
-
-// // public interface FacilityScoreRepository extends JpaRepository<FacilityScore, Long> {
-
-    
-// //     FacilityScore findByPropertyId(Long propertyId);
-
-// //     List<FacilityScore> findAllByPropertyId(Long propertyId);
-// //}
-
-
-
-// package com.example.demo.repository;
-
-// import com.example.demo.entity.FacilityScore;
-// import org.springframework.data.jpa.repository.JpaRepository;
-// import java.util.List;
-
-// public interface FacilityScoreRepository extends JpaRepository<FacilityScore, Long> {
-
-//     FacilityScore findByPropertyId(Long propertyId);
-
-//     List<FacilityScore> findAllByPropertyId(Long propertyId);
-// }
-
-// package com.example.demo.repository;
-
-// import org.springframework.data.jpa.repository.JpaRepository;
-// import com.example.demo.entity.FacilityScore;
-
-// import java.util.List;
-
-// public interface FacilityScoreRepository extends JpaRepository<FacilityScore, Long> {
-//     List<FacilityScore> findByPropertyId(Long propertyId);
-//}
-
-
-
 package com.example.demo.repository;
 
-import com.example.demo.entity.FacilityScore;
-import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import com.example.demo.entity.FacilityScore;
+import com.example.demo.entity.Property;
 
+import java.util.Optional;
+
+@Repository
 public interface FacilityScoreRepository extends JpaRepository<FacilityScore, Long> {
-
-    Optional<FacilityScore> findByPropertyId(Long propertyId);
+    Optional<FacilityScore> findByProperty(Property property);
 }
