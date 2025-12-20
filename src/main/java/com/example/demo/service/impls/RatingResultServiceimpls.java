@@ -1,80 +1,68 @@
-package com.example.demo.service.impls;
+package com.example.demo.service.impl;
 
-import com.example.demo.entity.FacilityScore;
-import com.example.demo.entity.Property;
-import com.example.demo.entity.RatingResult;
-import com.example.demo.repository.FacilityScoreRepository;
-import com.example.demo.repository.PropertyRepository;
-import com.example.demo.repository.RatingResultRepository;
-import com.example.demo.service.RatingResultService;
-import java.util.Optional;
 import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.example.demo.repository.RatingResultRepository;
+import com.example.demo.repository.PropertyRepository;
+import com.example.demo.entity.RatingResult;
+import com.example.demo.entity.Property;
+import com.example.demo.exception.RatingResultRuntimeException;
+import com.example.demo.service.RatingResultService;
+
+import java.util.List;
 
 @Service
-public class RatingResultServiceimpls implements RatingResultService {
+public class RatingResultServiceImpl implements RatingResultService {
 
-    private final PropertyRepository propertyRepository;
-    private final FacilityScoreRepository facilityScoreRepository;
-    private final RatingResultRepository ratingResultRepository;
+    @Autowired
+    private RatingResultRepository ratingResultRepository;
 
-    public RatingResultServiceimpls(PropertyRepository propertyRepository,
-                                    FacilityScoreRepository facilityScoreRepository,
-                                    RatingResultRepository ratingResultRepository) {
-        this.propertyRepository = propertyRepository;
-        this.facilityScoreRepository = facilityScoreRepository;
-        this.ratingResultRepository = ratingResultRepository;
+    @Autowired
+    private PropertyRepository propertyRepository;
+
+    @Override
+    public RatingResult createRatingResult(RatingResult ratingResult) {
+        Long propertyId = ratingResult.getProperty().getId();
+
+        if (!propertyRepository.existsById(propertyId)) {
+            throw new RatingResultRuntimeException("Property not found with id: " + propertyId);
+        }
+
+        if (ratingResultRepository.existsByPropertyId(propertyId)) {
+            throw new RatingResultRuntimeException("Rating already exists for property id: " + propertyId);
+        }
+
+        Property property = propertyRepository.findById(propertyId).get();
+        ratingResult.setProperty(property);
+        return ratingResultRepository.save(ratingResult);
     }
 
     @Override
-    public RatingResult generateRating(Long propertyId) {
-
-        Optional<Property> propertyOpt = propertyRepository.findById(propertyId);
-        if (!propertyOpt.isPresent()) {
-            return null;
-        }
-
-        Optional<FacilityScore> scoreOpt =
-                facilityScoreRepository.findByPropertyId(propertyId);
-
-        if (!scoreOpt.isPresent()) {
-            return null;
-        }
-
-        FacilityScore score = scoreOpt.get();
-
-        double avg = (
-                score.getSchoolProximity()
-                        + score.getHospitalProximity()
-                        + score.getTransportAccess()
-                        + score.getSafetyScore()
-        ) / 4.0;
-
-        Optional<RatingResult> ratingOpt =
-                ratingResultRepository.findByPropertyId(propertyId);
-
-        RatingResult result = ratingOpt.isPresent()
-                ? ratingOpt.get()
-                : new RatingResult();
-
-        result.setProperty(propertyOpt.get());
-        result.setFinalRating(avg);
-        result.setRatingCategory(resolveCategory(avg));
-
-        return ratingResultRepository.save(result);
+    public RatingResult getRatingResultById(Long id) {
+        return ratingResultRepository.findById(id)
+                .orElseThrow(() -> new RatingResultRuntimeException("RatingResult not found with id: " + id));
     }
 
     @Override
-    public RatingResult getRatingByProperty(Long propertyId) {
-        Optional<RatingResult> ratingOpt =
-                ratingResultRepository.findByPropertyId(propertyId);
-
-        return ratingOpt.orElse(null);
+    public List<RatingResult> getAllRatingResults() {
+        return ratingResultRepository.findAll();
     }
 
-    private String resolveCategory(double rating) {
-        if (rating >= 8) return "EXCELLENT";
-        if (rating >= 6) return "GOOD";
-        if (rating >= 4) return "AVERAGE";
-        return "POOR";
+    @Override
+    public RatingResult updateRatingResult(Long id, RatingResult ratingResult) {
+        RatingResult existing = getRatingResultById(id);
+
+        existing.setFinalRating(ratingResult.getFinalRating());
+        existing.setRatingCategory(ratingResult.getRatingCategory());
+        // Do not change property as it is OneToOne unique
+
+        return ratingResultRepository.save(existing);
+    }
+
+    @Override
+    public void deleteRatingResult(Long id) {
+        RatingResult existing = getRatingResultById(id);
+        ratingResultRepository.delete(existing);
     }
 }

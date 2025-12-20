@@ -1,10 +1,8 @@
 package com.example.demo.repository;
 
-import com.example.demo.entity.RatingResult;
-import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
+import com.example.demo.entity.RatingResult;
 
 public interface RatingResultRepository extends JpaRepository<RatingResult, Long> {
-
-    Optional<RatingResult> findByPropertyId(Long propertyId);
+    boolean existsByPropertyId(Long propertyId);
 }
