@@ -8,3 +8,4 @@ public interface RatingResultService {
 
     RatingResult getRatingByProperty(Long propertyId);
 }
+

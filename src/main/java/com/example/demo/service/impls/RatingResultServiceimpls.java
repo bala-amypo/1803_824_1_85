@@ -18,8 +18,8 @@ public class RatingResultServiceimpls implements RatingResultService {
     private final RatingResultRepository ratingResultRepository;
 
     public RatingResultServiceimpls(PropertyRepository propertyRepository,
-                                   FacilityScoreRepository facilityScoreRepository,
-                                   RatingResultRepository ratingResultRepository) {
+                                    FacilityScoreRepository facilityScoreRepository,
+                                    RatingResultRepository ratingResultRepository) {
         this.propertyRepository = propertyRepository;
         this.facilityScoreRepository = facilityScoreRepository;
         this.ratingResultRepository = ratingResultRepository;
