@@ -1,4 +1,4 @@
-package com.example.demo.service.impl;
+package com.example.demo.service.impls;
 
 import com.example.demo.entity.FacilityScore;
 import com.example.demo.entity.Property;
@@ -33,44 +33,42 @@ public class RatingResultServiceimpls implements RatingResultService {
             return null;
         }
 
-        Optional<FacilityScore> scoreOpt = facilityScoreRepository.findByPropertyId(propertyId);
+        Optional<FacilityScore> scoreOpt =
+                facilityScoreRepository.findByPropertyId(propertyId);
+
         if (!scoreOpt.isPresent()) {
             return null;
         }
 
         FacilityScore score = scoreOpt.get();
 
-        double avgRating = (
+        double avg = (
                 score.getSchoolProximity()
                         + score.getHospitalProximity()
                         + score.getTransportAccess()
                         + score.getSafetyScore()
         ) / 4.0;
 
-        Optional<RatingResult> ratingOpt = ratingResultRepository.findByPropertyId(propertyId);
+        Optional<RatingResult> ratingOpt =
+                ratingResultRepository.findByPropertyId(propertyId);
 
-        RatingResult ratingResult;
-        if (ratingOpt.isPresent()) {
-            ratingResult = ratingOpt.get();
-        } else {
-            ratingResult = new RatingResult();
-            ratingResult.setProperty(propertyOpt.get());
-        }
+        RatingResult result = ratingOpt.isPresent()
+                ? ratingOpt.get()
+                : new RatingResult();
 
-        ratingResult.setFinalRating(avgRating);
-        ratingResult.setRatingCategory(resolveCategory(avgRating));
+        result.setProperty(propertyOpt.get());
+        result.setFinalRating(avg);
+        result.setRatingCategory(resolveCategory(avg));
 
-        return ratingResultRepository.save(ratingResult);
+        return ratingResultRepository.save(result);
     }
 
     @Override
     public RatingResult getRatingByProperty(Long propertyId) {
+        Optional<RatingResult> ratingOpt =
+                ratingResultRepository.findByPropertyId(propertyId);
 
-        Optional<RatingResult> ratingOpt = ratingResultRepository.findByPropertyId(propertyId);
-        if (ratingOpt.isPresent()) {
-            return ratingOpt.get();
-        }
-        return null;
+        return ratingOpt.orElse(null);
     }
 
     private String resolveCategory(double rating) {
