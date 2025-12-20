@@ -92,3 +92,60 @@
 //         return facilityScoreRepository.findAllByPropertyId(propertyId);
 //     }
 // }
+
+package com.example.demo.service.impl;
+
+import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.example.demo.repository.FacilityScoreRepository;
+import com.example.demo.repository.PropertyRepository;
+import com.example.demo.entity.FacilityScore;
+import com.example.demo.entity.Property;
+import com.example.demo.service.FacilityScoreService;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class FacilityScoreServiceImpl implements FacilityScoreService {
+
+    @Autowired
+    private FacilityScoreRepository facilityScoreRepository;
+
+    @Autowired
+    private PropertyRepository propertyRepository;
+
+    @Override
+    public FacilityScore createFacilityScore(FacilityScore score) {
+        Long propertyId = score.getProperty().getId();
+        Optional<Property> property = propertyRepository.findById(propertyId);
+        if(property.isPresent()) {
+            score.setProperty(property.get());
+            return facilityScoreRepository.save(score);
+        } else {
+            throw new RuntimeException("Property not found with id " + propertyId);
+        }
+    }
+
+    @Override
+    public List<FacilityScore> getAllScores() {
+        return facilityScoreRepository.findAll();
+    }
+
+    @Override
+    public FacilityScore getScoreById(Long id) {
+        return facilityScoreRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("FacilityScore not found with id " + id));
+    }
+
+    @Override
+    public List<FacilityScore> getScoresByPropertyId(Long propertyId) {
+        return facilityScoreRepository.findByPropertyId(propertyId);
+    }
+
+    @Override
+    public void deleteScore(Long id) {
+        facilityScoreRepository.deleteById(id);
+    }
+}

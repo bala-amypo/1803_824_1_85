@@ -81,3 +81,47 @@
 //         return facilityScoreService.getAllScoresByProperty(propertyId);
 //     }
 // }
+
+
+package com.example.demo.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import com.example.demo.entity.FacilityScore;
+import com.example.demo.service.FacilityScoreService;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/facility-scores")
+public class FacilityScoreController {
+
+    @Autowired
+    private FacilityScoreService service;
+
+    @PostMapping
+    public FacilityScore createScore(@RequestBody FacilityScore score) {
+        return service.createFacilityScore(score);
+    }
+
+    @GetMapping
+    public List<FacilityScore> getAllScores() {
+        return service.getAllScores();
+    }
+
+    @GetMapping("/{id}")
+    public FacilityScore getScoreById(@PathVariable Long id) {
+        return service.getScoreById(id);
+    }
+
+    @GetMapping("/property/{propertyId}")
+    public List<FacilityScore> getScoresByProperty(@PathVariable Long propertyId) {
+        return service.getScoresByPropertyId(propertyId);
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteScore(@PathVariable Long id) {
+        service.deleteScore(id);
+        return "Deleted successfully";
+    }
+}
