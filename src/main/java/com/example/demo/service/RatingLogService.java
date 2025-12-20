@@ -9,3 +9,4 @@ public interface RatingLogService {
 
     List<RatingLog> getLogsByProperty(Long propertyId);
 }
+
