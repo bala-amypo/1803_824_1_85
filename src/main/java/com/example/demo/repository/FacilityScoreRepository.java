@@ -28,13 +28,26 @@
 //     List<FacilityScore> findAllByPropertyId(Long propertyId);
 // }
 
+// package com.example.demo.repository;
+
+// import org.springframework.data.jpa.repository.JpaRepository;
+// import com.example.demo.entity.FacilityScore;
+
+// import java.util.List;
+
+// public interface FacilityScoreRepository extends JpaRepository<FacilityScore, Long> {
+//     List<FacilityScore> findByPropertyId(Long propertyId);
+//}
+
+
+
 package com.example.demo.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 import com.example.demo.entity.FacilityScore;
-
-import java.util.List;
+import java.util.Optional;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface FacilityScoreRepository extends JpaRepository<FacilityScore, Long> {
-    List<FacilityScore> findByPropertyId(Long propertyId);
+
+    Optional<FacilityScore> findByPropertyId(Long propertyId);
 }
