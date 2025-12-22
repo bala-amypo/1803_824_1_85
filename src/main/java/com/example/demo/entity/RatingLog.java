@@ -22,8 +22,8 @@ public class RatingLog {
     @Column(name = "log_id")
     private Long id;
 
-    // One-to-One relationship with Property
-    @OneToOne(optional = false)  // Must have a property
+    
+    @OneToOne(optional = false) 
     @JoinColumn(name = "property_id", nullable = false)
     private Property property;
 
@@ -33,22 +33,21 @@ public class RatingLog {
     @Column(name = "logged_at", nullable = false)
     private LocalDateTime loggedAt;
 
-    // Default constructor
     public RatingLog() {}
 
-    // Constructor without ID (ID is auto-generated)
+    
     public RatingLog(Property property, String message) {
         this.property = property;
         this.message = message;
     }
 
-    // Auto-set loggedAt before insert
+   
     @PrePersist
     protected void onCreate() {
         this.loggedAt = LocalDateTime.now();
     }
 
-    // Getters and Setters
+   
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 

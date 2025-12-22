@@ -15,7 +15,6 @@ public interface FacilityScoreRepository extends JpaRepository<FacilityScore, Lo
 
     List<FacilityScore> findAllByProperty(Property property);
 
-    // Spring Data JPA way: query by property ID directly
     Optional<FacilityScore> findByProperty_Id(Long propertyId);
 
     List<FacilityScore> findAllByProperty_Id(Long propertyId);
