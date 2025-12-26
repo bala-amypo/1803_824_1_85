@@ -54,3 +54,19 @@
 //     FacilityScore addScore(Long propertyId, FacilityScore score);
 //     FacilityScore getScoreByProperty(Long propertyId);
 // }
+
+
+package com.example.demo.service;
+
+import com.example.demo.entity.FacilityScore;
+import com.example.demo.entity.Property;
+
+import java.util.Optional;
+
+public interface FacilityScoreService {
+
+    FacilityScore addScore(Property property, FacilityScore score);
+
+    Optional<FacilityScore> getScoreByProperty(Property property);
+}
+
