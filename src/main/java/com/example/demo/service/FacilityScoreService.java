@@ -35,7 +35,7 @@
 
 //     @Override
 //     public Property addProperty(Property property) {
-//         if (property.getPrice() < 0) throw new BadRequestException("Price must be >= 0");
+//        if (property.getPrice() < 0) throw new BadRequestException("Price must be >= 0");
 //         if (property.getAreaSqFt() < 100) throw new BadRequestException("Area must be >= 100");
 //         return propertyRepository.save(property);
 //     }
@@ -44,4 +44,13 @@
 //     public List<Property> getAllProperties() {
 //         return propertyRepository.findAll();
 //     }
-// }
+//}
+
+
+package com.example.demo.service;
+import com.example.demo.entity.FacilityScore;
+
+public interface FacilityScoreService {
+    FacilityScore addScore(Long propertyId, FacilityScore score);
+    FacilityScore getScoreByProperty(Long propertyId);
+}
