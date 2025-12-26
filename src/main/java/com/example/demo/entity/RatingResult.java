@@ -83,7 +83,7 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "rating_results")
+@Table(name = "ratingresults")
 public class RatingResult {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
