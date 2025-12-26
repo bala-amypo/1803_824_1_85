@@ -1,57 +1,78 @@
 
+// package com.example.demo.entity;
+
+// import jakarta.persistence.Entity;
+// import jakarta.persistence.GeneratedValue;
+// import jakarta.persistence.GenerationType;
+// import jakarta.persistence.Id;
+// import jakarta.persistence.JoinColumn;
+// import jakarta.persistence.OneToOne;
+// import jakarta.persistence.PrePersist;
+// import java.time.LocalDateTime;
+
+// @Entity
+// public class RatingResult {
+
+//     @Id
+//     @GeneratedValue(strategy = GenerationType.IDENTITY)
+//     private Long id;
+
+//     @OneToOne
+//     @JoinColumn(name = "property_id", unique = true)
+//     private Property property;
+
+//     private Double finalRating;
+
+//     private String ratingCategory;
+
+//     private LocalDateTime ratedAt;
+
+//     @PrePersist
+//     public void prePersist() {
+//         this.ratedAt = LocalDateTime.now();
+//     }
+
+//     public RatingResult() {}
+
+//     public RatingResult(Property property, Double finalRating, String ratingCategory) {
+//         this.property = property;
+//         this.finalRating = finalRating;
+//         this.ratingCategory = ratingCategory;
+//     }
+
+//     public Long getId() { return id; }
+//     public void setId(Long id) { this.id = id; }
+
+//     public Property getProperty() { return property; }
+//     public void setProperty(Property property) { this.property = property; }
+
+//     public Double getFinalRating() { return finalRating; }
+//     public void setFinalRating(Double finalRating) { this.finalRating = finalRating; }
+
+//     public String getRatingCategory() { return ratingCategory; }
+//     public void setRatingCategory(String ratingCategory) { this.ratingCategory = ratingCategory; }
+
+//     public LocalDateTime getRatedAt() { return ratedAt; }
+//     public void setRatedAt(LocalDateTime ratedAt) { this.ratedAt = ratedAt; }
+// }
+
 package com.example.demo.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.PrePersist;
+import jakarta.persistence.*;
+import lombok.*;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "rating_results")
+@Getter @Setter @NoArgsConstructor
 public class RatingResult {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @OneToOne
-    @JoinColumn(name = "property_id", unique = true)
+    @OneToOne @JoinColumn(name = "property_id")
     private Property property;
-
     private Double finalRating;
-
     private String ratingCategory;
-
     private LocalDateTime ratedAt;
 
-    @PrePersist
-    public void prePersist() {
-        this.ratedAt = LocalDateTime.now();
-    }
-
-    public RatingResult() {}
-
-    public RatingResult(Property property, Double finalRating, String ratingCategory) {
-        this.property = property;
-        this.finalRating = finalRating;
-        this.ratingCategory = ratingCategory;
-    }
-
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-
-    public Property getProperty() { return property; }
-    public void setProperty(Property property) { this.property = property; }
-
-    public Double getFinalRating() { return finalRating; }
-    public void setFinalRating(Double finalRating) { this.finalRating = finalRating; }
-
-    public String getRatingCategory() { return ratingCategory; }
-    public void setRatingCategory(String ratingCategory) { this.ratingCategory = ratingCategory; }
-
-    public LocalDateTime getRatedAt() { return ratedAt; }
-    public void setRatedAt(LocalDateTime ratedAt) { this.ratedAt = ratedAt; }
+    @PrePersist protected void onCreate() { ratedAt = LocalDateTime.now(); }
 }
