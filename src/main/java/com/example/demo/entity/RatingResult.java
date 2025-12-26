@@ -54,7 +54,7 @@
 
 //     public LocalDateTime getRatedAt() { return ratedAt; }
 //     public void setRatedAt(LocalDateTime ratedAt) { this.ratedAt = ratedAt; }
-// }
+//}
 
 package com.example.demo.entity;
 
