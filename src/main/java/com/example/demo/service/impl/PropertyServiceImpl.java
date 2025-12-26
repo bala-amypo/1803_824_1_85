@@ -133,22 +133,22 @@
 
 
 
-package com.example.demo.service.impl;
+// package com.example.demo.service.impl;
 
-import com.example.demo.entity.Property;
-import com.example.demo.repository.PropertyRepository;
-import com.example.demo.service.PropertyService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+// import com.example.demo.entity.Property;
+// import com.example.demo.repository.PropertyRepository;
+// import com.example.demo.service.PropertyService;
+// import org.springframework.beans.factory.annotation.Autowired;
+// import org.springframework.stereotype.Service;
 
-@Service
-public class PropertyServiceImpl implements PropertyService {
+// @Service
+// public class PropertyServiceImpl implements PropertyService {
 
-    @Autowired
-    private PropertyRepository propertyRepository;
+//     @Autowired
+//     private PropertyRepository propertyRepository;
 
-    @Override
-    public Property addProperty(Property property) {
-        return propertyRepository.save(property);
-    }
-}
+//     @Override
+//     public Property addProperty(Property property) {
+//         return propertyRepository.save(property);
+//     }
+// }
