@@ -1,36 +1,80 @@
+// package com.example.demo.controller;
+
+// import com.example.demo.entity.RatingLog;
+// import com.example.demo.service.RatingLogService;
+// import org.springframework.web.bind.annotation.GetMapping;
+// import org.springframework.web.bind.annotation.PathVariable;
+// import org.springframework.web.bind.annotation.PostMapping;
+// import org.springframework.web.bind.annotation.RequestParam;
+// import org.springframework.web.bind.annotation.RequestMapping;
+// import org.springframework.web.bind.annotation.RestController;
+// import java.util.List;
+
+// @RestController
+// @RequestMapping("/logs")
+// public class RatingLogController {
+
+//     public final RatingLogService ratingLogService;
+
+//     public RatingLogController(RatingLogService ratingLogService) {
+//         this.ratingLogService = ratingLogService;
+//     }
+
+  
+//     @PostMapping("/{propertyId}")
+//     public RatingLog addLog(@PathVariable Long propertyId, @RequestParam String message) {
+//         return ratingLogService.addLog(propertyId, message);
+//     }
+
+    
+//     @GetMapping("/{propertyId}")
+//     public List<RatingLog> getLogs(@PathVariable Long propertyId) {
+//         return ratingLogService.getLogsByProperty(propertyId);
+//     }
+//}
+
+
+
 package com.example.demo.controller;
 
 import com.example.demo.entity.RatingLog;
 import com.example.demo.service.RatingLogService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/logs")
 public class RatingLogController {
 
-    public final RatingLogService ratingLogService;
+    private final RatingLogService ratingLogService;
 
     public RatingLogController(RatingLogService ratingLogService) {
         this.ratingLogService = ratingLogService;
     }
 
-  
+    /**
+     * Adds a manual log entry for a property.
+     * Maps to POST /logs/{propertyId}
+     */
     @PostMapping("/{propertyId}")
-    public RatingLog addLog(@PathVariable Long propertyId, @RequestParam String message) {
-        return ratingLogService.addLog(propertyId, message);
+    public ResponseEntity<RatingLog> addLog(@PathVariable Long propertyId, 
+                                          @RequestBody Map<String, String> requestBody) {
+        String message = requestBody.get("message");
+        RatingLog savedLog = ratingLogService.addLog(propertyId, message);
+        return new ResponseEntity<>(savedLog, HttpStatus.CREATED);
     }
 
-    
+    /**
+     * Retrieves all log entries associated with a property.
+     * Maps to GET /logs/{propertyId}
+     */
     @GetMapping("/{propertyId}")
-    public List<RatingLog> getLogs(@PathVariable Long propertyId) {
-        return ratingLogService.getLogsByProperty(propertyId);
+    public ResponseEntity<List<RatingLog>> getLogsByProperty(@PathVariable Long propertyId) {
+        List<RatingLog> logs = ratingLogService.getLogsByProperty(propertyId);
+        return ResponseEntity.ok(logs);
     }
 }
-
-
