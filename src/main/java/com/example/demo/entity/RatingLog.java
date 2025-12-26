@@ -173,30 +173,30 @@
 // }
 
 
-package com.example.demo.entity;
+// package com.example.demo.entity;
 
-import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+// import jakarta.persistence.*;
+// import lombok.Getter;
+// import lombok.Setter;
 
-import java.time.LocalDateTime;
+// import java.time.LocalDateTime;
 
-@Entity
-@Getter @Setter
-public class RatingLog {
+// @Entity
+// @Getter @Setter
+// public class RatingLog {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+//     @Id
+//     @GeneratedValue(strategy = GenerationType.IDENTITY)
+//     private Long id;
 
-    private String message;
+//     private String message;
 
-    private LocalDateTime loggedAt = LocalDateTime.now();
+//     private LocalDateTime loggedAt = LocalDateTime.now();
 
-    @ManyToOne
-    @JoinColumn(name = "property_id")
-    private Property property;
-}
+//     @ManyToOne
+//     @JoinColumn(name = "property_id")
+//     private Property property;
+// }
 
 
 
