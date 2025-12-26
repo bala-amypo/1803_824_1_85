@@ -173,16 +173,40 @@
 // }
 
 
+// package com.example.demo.entity;
+
+// import jakarta.persistence.*;
+// import lombok.Getter;
+// import lombok.Setter;
+
+// import java.time.LocalDateTime;
+
+// @Entity
+// @Getter @Setter
+// public class RatingLog {
+
+//     @Id
+//     @GeneratedValue(strategy = GenerationType.IDENTITY)
+//     private Long id;
+
+//     private String message;
+
+//     private LocalDateTime loggedAt = LocalDateTime.now();
+
+//     @ManyToOne
+//     @JoinColumn(name = "property_id")
+//     private Property property;
+//}
+
+
+
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-
+import org.hibernate.annotations.CreationTimestamp;
 import java.time.LocalDateTime;
 
 @Entity
-@Getter @Setter
 public class RatingLog {
 
     @Id
@@ -191,9 +215,25 @@ public class RatingLog {
 
     private String message;
 
-    private LocalDateTime loggedAt = LocalDateTime.now();
+    @CreationTimestamp
+    private LocalDateTime loggedAt;
 
     @ManyToOne
     @JoinColumn(name = "property_id")
     private Property property;
+
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
+    public String getMessage() { return message; }
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public LocalDateTime getLoggedAt() { return loggedAt; }
+
+    public Property getProperty() { return property; }
+    public void setProperty(Property property) {
+        this.property = property;
+    }
 }

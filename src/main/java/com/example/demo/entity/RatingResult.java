@@ -218,16 +218,40 @@
 //     }
 // }
 
+// package com.example.demo.entity;
+
+// import jakarta.persistence.*;
+// import lombok.Getter;
+// import lombok.Setter;
+
+// import java.time.LocalDateTime;
+
+// @Entity
+// @Getter @Setter
+// public class RatingResult {
+
+//     @Id
+//     @GeneratedValue(strategy = GenerationType.IDENTITY)
+//     private Long id;
+
+//     private Double finalRating;
+//     private String ratingCategory;
+
+//     private LocalDateTime ratedAt = LocalDateTime.now();
+
+//     @OneToOne
+//     @JoinColumn(name = "property_id", nullable = false)
+//     private Property property;
+// }
+
+
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-
+import org.hibernate.annotations.CreationTimestamp;
 import java.time.LocalDateTime;
 
 @Entity
-@Getter @Setter
 public class RatingResult {
 
     @Id
@@ -237,9 +261,30 @@ public class RatingResult {
     private Double finalRating;
     private String ratingCategory;
 
-    private LocalDateTime ratedAt = LocalDateTime.now();
+    @CreationTimestamp
+    private LocalDateTime ratedAt;
 
     @OneToOne
-    @JoinColumn(name = "property_id", nullable = false)
+    @JoinColumn(name = "property_id", unique = true)
     private Property property;
+
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
+    public Double getFinalRating() { return finalRating; }
+    public void setFinalRating(Double finalRating) {
+        this.finalRating = finalRating;
+    }
+
+    public String getRatingCategory() { return ratingCategory; }
+    public void setRatingCategory(String ratingCategory) {
+        this.ratingCategory = ratingCategory;
+    }
+
+    public LocalDateTime getRatedAt() { return ratedAt; }
+
+    public Property getProperty() { return property; }
+    public void setProperty(Property property) {
+        this.property = property;
+    }
 }
