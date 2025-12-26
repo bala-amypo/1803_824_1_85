@@ -99,42 +99,42 @@
 // }
 
 
-package com.example.demo.service.impl;
+// package com.example.demo.service.impl;
 
-import com.example.demo.entity.FacilityScore;
-import com.example.demo.entity.Property;
-import com.example.demo.repository.FacilityScoreRepository;
-import com.example.demo.service.FacilityScoreService;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+// import com.example.demo.entity.FacilityScore;
+// import com.example.demo.entity.Property;
+// import com.example.demo.repository.FacilityScoreRepository;
+// import com.example.demo.service.FacilityScoreService;
+// import org.springframework.stereotype.Service;
+// import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
+// import java.util.Optional;
 
-@Service
-@Transactional
-public class FacilityScoreServiceImpl implements FacilityScoreService {
+// @Service
+// @Transactional
+// public class FacilityScoreServiceImpl implements FacilityScoreService {
 
-    private final FacilityScoreRepository facilityScoreRepository;
+//     private final FacilityScoreRepository facilityScoreRepository;
 
-    public FacilityScoreServiceImpl(FacilityScoreRepository facilityScoreRepository) {
-        this.facilityScoreRepository = facilityScoreRepository;
-    }
+//     public FacilityScoreServiceImpl(FacilityScoreRepository facilityScoreRepository) {
+//         this.facilityScoreRepository = facilityScoreRepository;
+//     }
 
-    @Override
-    public FacilityScore addScore(Property property, FacilityScore score) {
-        // Check if a score already exists
-        facilityScoreRepository.findByProperty(property).ifPresent(s -> {
-            throw new RuntimeException("FacilityScore already exists for this property");
-        });
+//     @Override
+//     public FacilityScore addScore(Property property, FacilityScore score) {
+//         // Check if a score already exists
+//         facilityScoreRepository.findByProperty(property).ifPresent(s -> {
+//             throw new RuntimeException("FacilityScore already exists for this property");
+//         });
 
-        score.setProperty(property);
-        return facilityScoreRepository.save(score);
-    }
+//         score.setProperty(property);
+//         return facilityScoreRepository.save(score);
+//     }
 
-    @Override
-    public Optional<FacilityScore> getScoreByProperty(Property property) {
-        return facilityScoreRepository.findByProperty(property);
-    }
-}
+//     @Override
+//     public Optional<FacilityScore> getScoreByProperty(Property property) {
+//         return facilityScoreRepository.findByProperty(property);
+//     }
+// }
 
 

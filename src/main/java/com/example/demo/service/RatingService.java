@@ -143,16 +143,16 @@
 //     }
 // }
 
-package com.example.demo.service;
+// package com.example.demo.service;
 
-import com.example.demo.entity.Property;
-import com.example.demo.entity.RatingResult;
+// import com.example.demo.entity.Property;
+// import com.example.demo.entity.RatingResult;
 
-import java.util.Optional;
+// import java.util.Optional;
 
-public interface RatingService {
+// public interface RatingService {
 
-    RatingResult generateRating(Property property);
+//     RatingResult generateRating(Property property);
 
-    Optional<RatingResult> getRatingByProperty(Property property);
-}
+//     Optional<RatingResult> getRatingByProperty(Property property);
+// }

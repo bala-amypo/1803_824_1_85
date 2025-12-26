@@ -258,32 +258,59 @@
 // }
 
 
+// package com.example.demo.security;
+
+// import com.example.demo.entity.User;
+// import io.jsonwebtoken.*;
+// import org.springframework.stereotype.Component;
+// import java.util.Date;
+
+// @Component
+// public class JwtTokenProvider {
+
+//     private final String SECRET = "secret-key";
+//     private final long EXPIRATION = 86400000;
+
+//     public String generateToken(org.springframework.security.core.Authentication auth, User user) {
+//         return Jwts.builder()
+//                 .setSubject(user.getEmail())
+//                 .claim("userId", user.getId())
+//                 .claim("role", user.getRole())
+//                 .setIssuedAt(new Date())
+//                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION))
+//                 .signWith(SignatureAlgorithm.HS512, SECRET)
+//                 .compact();
+//     }
+
+//     public Long getUserIdFromToken(String token) {
+//         return ((Number) Jwts.parser().setSigningKey(SECRET)
+//                 .parseClaimsJws(token).getBody().get("userId")).longValue();
+//     }
+// }
+
+
 package com.example.demo.security;
 
 import com.example.demo.entity.User;
-import io.jsonwebtoken.*;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 import java.util.Date;
 
 @Component
 public class JwtTokenProvider {
 
-    private final String SECRET = "secret-key";
-    private final long EXPIRATION = 86400000;
+    private final String SECRET = "secretkey";
 
-    public String generateToken(org.springframework.security.core.Authentication auth, User user) {
+    public String generateToken(Authentication auth, User user) {
         return Jwts.builder()
                 .setSubject(user.getEmail())
                 .claim("userId", user.getId())
                 .claim("role", user.getRole())
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION))
-                .signWith(SignatureAlgorithm.HS512, SECRET)
+                .signWith(SignatureAlgorithm.HS256, SECRET)
                 .compact();
     }
-
-    public Long getUserIdFromToken(String token) {
-        return ((Number) Jwts.parser().setSigningKey(SECRET)
-                .parseClaimsJws(token).getBody().get("userId")).longValue();
-    }
 }
+
