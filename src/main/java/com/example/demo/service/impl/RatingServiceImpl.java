@@ -111,79 +111,79 @@
 
 
 
-// package com.example.demo.service.impl;
+package com.example.demo.service.impl;
 
-// import com.example.demo.entity.FacilityScore;
-// import com.example.demo.entity.Property;
-// import com.example.demo.entity.RatingResult;
-// import com.example.demo.exception.BadRequestException;
-// import com.example.demo.exception.ResourceNotFoundException;
-// import com.example.demo.repository.FacilityScoreRepository;
-// import com.example.demo.repository.PropertyRepository;
-// import com.example.demo.repository.RatingResultRepository;
-// import com.example.demo.service.RatingService;
-// import org.springframework.stereotype.Service;
-// import org.springframework.transaction.annotation.Transactional;
+import com.example.demo.entity.FacilityScore;
+import com.example.demo.entity.Property;
+import com.example.demo.entity.RatingResult;
+import com.example.demo.exception.BadRequestException;
+import com.example.demo.exception.ResourceNotFoundException;
+import com.example.demo.repository.FacilityScoreRepository;
+import com.example.demo.repository.PropertyRepository;
+import com.example.demo.repository.RatingResultRepository;
+import com.example.demo.service.RatingService;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-// @Service
-// public class RatingServiceImpl implements RatingService {
+@Service
+public class RatingServiceImpl implements RatingService {
 
-//     private final RatingResultRepository ratingResultRepository;
-//     private final FacilityScoreRepository facilityScoreRepository;
-//     private final PropertyRepository propertyRepository;
+    private final RatingResultRepository ratingResultRepository;
+    private final FacilityScoreRepository facilityScoreRepository;
+    private final PropertyRepository propertyRepository;
 
-//     // Requirement: Constructor Injection
-//     public RatingServiceImpl(RatingResultRepository ratingResultRepository,
-//                              FacilityScoreRepository facilityScoreRepository,
-//                              PropertyRepository propertyRepository) {
-//         this.ratingResultRepository = ratingResultRepository;
-//         this.facilityScoreRepository = facilityScoreRepository;
-//         this.propertyRepository = propertyRepository;
-//     }
+    // Requirement: Constructor Injection
+    public RatingServiceImpl(RatingResultRepository ratingResultRepository,
+                             FacilityScoreRepository facilityScoreRepository,
+                             PropertyRepository propertyRepository) {
+        this.ratingResultRepository = ratingResultRepository;
+        this.facilityScoreRepository = facilityScoreRepository;
+        this.propertyRepository = propertyRepository;
+    }
 
-//     @Override
-//     @Transactional
-//     public RatingResult generateRating(Long propertyId) {
-//         // 1. Verify Property exists
-//         Property property = propertyRepository.findById(propertyId)
-//                 .orElseThrow(() -> new ResourceNotFoundException("Property not found with ID: " + propertyId));
+    @Override
+    @Transactional
+    public RatingResult generateRating(Long propertyId) {
+        // 1. Verify Property exists
+        Property property = propertyRepository.findById(propertyId)
+                .orElseThrow(() -> new ResourceNotFoundException("Property not found with ID: " + propertyId));
 
-//         // 2. Verify Facility Score exists for this property
-//         FacilityScore score = facilityScoreRepository.findByProperty(property)
-//                 .orElseThrow(() -> new BadRequestException("Facility scores must be provided before generating a rating."));
+        // 2. Verify Facility Score exists for this property
+        FacilityScore score = facilityScoreRepository.findByProperty(property)
+                .orElseThrow(() -> new BadRequestException("Facility scores must be provided before generating a rating."));
 
-//         // 3. Calculate Average (Using manual getters from your rectified Entity)
-//         double average = (score.getSchoolProximity() + 
-//                           score.getHospitalProximity() + 
-//                           score.getTransportAccess() + 
-//                           score.getSafetyScore()) / 4.0;
+        // 3. Calculate Average (Using manual getters from your rectified Entity)
+        double average = (score.getSchoolProximity() + 
+                          score.getHospitalProximity() + 
+                          score.getTransportAccess() + 
+                          score.getSafetyScore()) / 4.0;
 
-//         // 4. Create Rating Result (Using manual setters)
-//         RatingResult result = new RatingResult();
-//         result.setProperty(property);
-//         result.setFinalRating(average);
+        // 4. Create Rating Result (Using manual setters)
+        RatingResult result = new RatingResult();
+        result.setProperty(property);
+        result.setFinalRating(average);
 
-//         // 5. Determine Category based on thresholds
-//         if (average >= 8.0) {
-//             result.setRatingCategory("EXCELLENT");
-//         } else if (average >= 6.0) {
-//             result.setRatingCategory("GOOD");
-//         } else if (average >= 4.0) {
-//             result.setRatingCategory("AVERAGE");
-//         } else {
-//             result.setRatingCategory("POOR");
-//         }
+        // 5. Determine Category based on thresholds
+        if (average >= 8.0) {
+            result.setRatingCategory("EXCELLENT");
+        } else if (average >= 6.0) {
+            result.setRatingCategory("GOOD");
+        } else if (average >= 4.0) {
+            result.setRatingCategory("AVERAGE");
+        } else {
+            result.setRatingCategory("POOR");
+        }
 
-//         // 6. Save and Return
-//         return ratingResultRepository.save(result);
-//     }
+        // 6. Save and Return
+        return ratingResultRepository.save(result);
+    }
 
-//     @Override
-//     public RatingResult getRating(Long propertyId) {
-//         Property property = propertyRepository.findById(propertyId)
-//                 .orElseThrow(() -> new ResourceNotFoundException("Property not found"));
+    @Override
+    public RatingResult getRating(Long propertyId) {
+        Property property = propertyRepository.findById(propertyId)
+                .orElseThrow(() -> new ResourceNotFoundException("Property not found"));
 
-//         return ratingResultRepository.findByProperty(property)
-//                 .orElseThrow(() -> new ResourceNotFoundException("No rating result found for this property."));
-//     }
-// } // <--- This brace closes the class. Ensure it is present!
+        return ratingResultRepository.findByProperty(property)
+                .orElseThrow(() -> new ResourceNotFoundException("No rating result found for this property."));
+    }
+} // <--- This brace closes the class. Ensure it is present!
