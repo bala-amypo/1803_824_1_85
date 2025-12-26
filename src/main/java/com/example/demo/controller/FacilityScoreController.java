@@ -127,42 +127,42 @@
 
 
 
-package com.example.demo.controller;
+// package com.example.demo.controller;
 
-import com.example.demo.entity.FacilityScore;
-import com.example.demo.service.FacilityScoreService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+// import com.example.demo.entity.FacilityScore;
+// import com.example.demo.service.FacilityScoreService;
+// import org.springframework.http.HttpStatus;
+// import org.springframework.http.ResponseEntity;
+// import org.springframework.web.bind.annotation.*;
 
-@RestController
-@RequestMapping("/scores")
-public class FacilityScoreController {
+// @RestController
+// @RequestMapping("/scores")
+// public class FacilityScoreController {
 
-    private final FacilityScoreService facilityScoreService;
+//     private final FacilityScoreService facilityScoreService;
 
-    public FacilityScoreController(FacilityScoreService facilityScoreService) {
-        this.facilityScoreService = facilityScoreService;
-    }
+//     public FacilityScoreController(FacilityScoreService facilityScoreService) {
+//         this.facilityScoreService = facilityScoreService;
+//     }
 
-    /**
-     * Creates a new facility score for a specific property.
-     * Maps to POST /scores/{propertyId}
-     */
-    @PostMapping("/{propertyId}")
-    public ResponseEntity<FacilityScore> createScore(@PathVariable Long propertyId, 
-                                                   @RequestBody FacilityScore score) {
-        FacilityScore savedScore = facilityScoreService.addScore(propertyId, score);
-        return new ResponseEntity<>(savedScore, HttpStatus.CREATED);
-    }
+//     /**
+//      * Creates a new facility score for a specific property.
+//      * Maps to POST /scores/{propertyId}
+//      */
+//     @PostMapping("/{propertyId}")
+//     public ResponseEntity<FacilityScore> createScore(@PathVariable Long propertyId, 
+//                                                    @RequestBody FacilityScore score) {
+//         FacilityScore savedScore = facilityScoreService.addScore(propertyId, score);
+//         return new ResponseEntity<>(savedScore, HttpStatus.CREATED);
+//     }
 
-    /**
-     * Retrieves the facility score for a specific property.
-     * Maps to GET /scores/{propertyId}
-     */
-    @GetMapping("/{propertyId}")
-    public ResponseEntity<FacilityScore> getScore(@PathVariable Long propertyId) {
-        FacilityScore score = facilityScoreService.getScoreByProperty(propertyId);
-        return ResponseEntity.ok(score);
-    }
-}
+//     /**
+//      * Retrieves the facility score for a specific property.
+//      * Maps to GET /scores/{propertyId}
+//      */
+//     @GetMapping("/{propertyId}")
+//     public ResponseEntity<FacilityScore> getScore(@PathVariable Long propertyId) {
+//         FacilityScore score = facilityScoreService.getScoreByProperty(propertyId);
+//         return ResponseEntity.ok(score);
+//     }
+// }

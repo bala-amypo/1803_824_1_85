@@ -58,42 +58,42 @@
 
 
 
-package com.example.demo.service.impl;
+// package com.example.demo.service.impl;
 
-import com.example.demo.entity.*;
-import com.example.demo.exception.*;
-import com.example.demo.repository.*;
-import com.example.demo.service.FacilityScoreService;
-import org.springframework.stereotype.Service;
+// import com.example.demo.entity.*;
+// import com.example.demo.exception.*;
+// import com.example.demo.repository.*;
+// import com.example.demo.service.FacilityScoreService;
+// import org.springframework.stereotype.Service;
 
-@Service
-public class FacilityScoreServiceImpl implements FacilityScoreService {
-    private final FacilityScoreRepository facilityScoreRepository;
-    private final PropertyRepository propertyRepository;
+// @Service
+// public class FacilityScoreServiceImpl implements FacilityScoreService {
+//     private final FacilityScoreRepository facilityScoreRepository;
+//     private final PropertyRepository propertyRepository;
 
-    public FacilityScoreServiceImpl(FacilityScoreRepository fs, PropertyRepository pr) {
-        this.facilityScoreRepository = fs; this.propertyRepository = pr;
-    }
+//     public FacilityScoreServiceImpl(FacilityScoreRepository fs, PropertyRepository pr) {
+//         this.facilityScoreRepository = fs; this.propertyRepository = pr;
+//     }
 
-    @Override
-    public FacilityScore addScore(Long propertyId, FacilityScore score) {
-        Property property = propertyRepository.findById(propertyId)
-                .orElseThrow(() -> new ResourceNotFoundException("Property not found"));
+//     @Override
+//     public FacilityScore addScore(Long propertyId, FacilityScore score) {
+//         Property property = propertyRepository.findById(propertyId)
+//                 .orElseThrow(() -> new ResourceNotFoundException("Property not found"));
 
-        if (facilityScoreRepository.findByProperty(property).isPresent()) {
-            throw new BadRequestException("Score already exists for this property");
-        }
+//         if (facilityScoreRepository.findByProperty(property).isPresent()) {
+//             throw new BadRequestException("Score already exists for this property");
+//         }
         
-        score.setProperty(property);
-        // saveAndFlush ensures Constraints are checked immediately for the tests
-        return facilityScoreRepository.saveAndFlush(score);
-    }
+//         score.setProperty(property);
+//         // saveAndFlush ensures Constraints are checked immediately for the tests
+//         return facilityScoreRepository.saveAndFlush(score);
+//     }
 
-    @Override
-    public FacilityScore getScoreByProperty(Long propertyId) {
-        Property property = propertyRepository.findById(propertyId)
-                .orElseThrow(() -> new ResourceNotFoundException("Not found"));
-        return facilityScoreRepository.findByProperty(property)
-                .orElseThrow(() -> new ResourceNotFoundException("Score missing"));
-    }
-}
+//     @Override
+//     public FacilityScore getScoreByProperty(Long propertyId) {
+//         Property property = propertyRepository.findById(propertyId)
+//                 .orElseThrow(() -> new ResourceNotFoundException("Not found"));
+//         return facilityScoreRepository.findByProperty(property)
+//                 .orElseThrow(() -> new ResourceNotFoundException("Score missing"));
+//     }
+// }

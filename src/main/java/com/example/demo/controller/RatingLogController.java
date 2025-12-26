@@ -35,46 +35,46 @@
 
 
 
-package com.example.demo.controller;
+// package com.example.demo.controller;
 
-import com.example.demo.entity.RatingLog;
-import com.example.demo.service.RatingLogService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+// import com.example.demo.entity.RatingLog;
+// import com.example.demo.service.RatingLogService;
+// import org.springframework.http.HttpStatus;
+// import org.springframework.http.ResponseEntity;
+// import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Map;
+// import java.util.List;
+// import java.util.Map;
 
-@RestController
-@RequestMapping("/logs")
-public class RatingLogController {
+// @RestController
+// @RequestMapping("/logs")
+// public class RatingLogController {
 
-    private final RatingLogService ratingLogService;
+//     private final RatingLogService ratingLogService;
 
-    public RatingLogController(RatingLogService ratingLogService) {
-        this.ratingLogService = ratingLogService;
-    }
+//     public RatingLogController(RatingLogService ratingLogService) {
+//         this.ratingLogService = ratingLogService;
+//     }
 
-    /**
-     * Adds a manual log entry for a property.
-     * Maps to POST /logs/{propertyId}
-     */
-    @PostMapping("/{propertyId}")
-    public ResponseEntity<RatingLog> addLog(@PathVariable Long propertyId, 
-                                          @RequestBody Map<String, String> requestBody) {
-        String message = requestBody.get("message");
-        RatingLog savedLog = ratingLogService.addLog(propertyId, message);
-        return new ResponseEntity<>(savedLog, HttpStatus.CREATED);
-    }
+//     /**
+//      * Adds a manual log entry for a property.
+//      * Maps to POST /logs/{propertyId}
+//      */
+//     @PostMapping("/{propertyId}")
+//     public ResponseEntity<RatingLog> addLog(@PathVariable Long propertyId, 
+//                                           @RequestBody Map<String, String> requestBody) {
+//         String message = requestBody.get("message");
+//         RatingLog savedLog = ratingLogService.addLog(propertyId, message);
+//         return new ResponseEntity<>(savedLog, HttpStatus.CREATED);
+//     }
 
-    /**
-     * Retrieves all log entries associated with a property.
-     * Maps to GET /logs/{propertyId}
-     */
-    @GetMapping("/{propertyId}")
-    public ResponseEntity<List<RatingLog>> getLogsByProperty(@PathVariable Long propertyId) {
-        List<RatingLog> logs = ratingLogService.getLogsByProperty(propertyId);
-        return ResponseEntity.ok(logs);
-    }
-}
+//     /**
+//      * Retrieves all log entries associated with a property.
+//      * Maps to GET /logs/{propertyId}
+//      */
+//     @GetMapping("/{propertyId}")
+//     public ResponseEntity<List<RatingLog>> getLogsByProperty(@PathVariable Long propertyId) {
+//         List<RatingLog> logs = ratingLogService.getLogsByProperty(propertyId);
+//         return ResponseEntity.ok(logs);
+//     }
+// }
