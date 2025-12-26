@@ -78,83 +78,83 @@
 
 
 
-package com.example.demo.controller;
+// package com.example.demo.controller;
 
-import com.example.demo.entity.RatingLog;
-import com.example.demo.entity.RatingResult;
-import com.example.demo.service.RatingService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
+// import com.example.demo.entity.RatingLog;
+// import com.example.demo.entity.RatingResult;
+// import com.example.demo.service.RatingService;
+// import org.springframework.beans.factory.annotation.Autowired;
+// import org.springframework.http.HttpStatus;
+// import org.springframework.http.ResponseEntity;
+// import org.springframework.security.access.prepost.PreAuthorize;
+// import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+// import java.util.List;
 
-@RestController
-@RequestMapping("/ratings")
-public class RatingController {
+// @RestController
+// @RequestMapping("/ratings")
+// public class RatingController {
 
-    @Autowired
-    private RatingService ratingService;
+//     @Autowired
+//     private RatingService ratingService;
 
-    /**
-     * Generate rating for a property (ADMIN only)
-     */
-    @PostMapping("/generate/{propertyId}")
-    @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<RatingResult> generateRating(@PathVariable Long propertyId) {
-        RatingResult ratingResult = ratingService.generateRating(propertyId);
-        return ResponseEntity.status(HttpStatus.CREATED).body(ratingResult);
-    }
+//     /**
+//      * Generate rating for a property (ADMIN only)
+//      */
+//     @PostMapping("/generate/{propertyId}")
+//     @PreAuthorize("hasRole('ADMIN')")
+//     public ResponseEntity<RatingResult> generateRating(@PathVariable Long propertyId) {
+//         RatingResult ratingResult = ratingService.generateRating(propertyId);
+//         return ResponseEntity.status(HttpStatus.CREATED).body(ratingResult);
+//     }
 
-    /**
-     * Get rating by property ID
-     */
-    @GetMapping("/property/{propertyId}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'ANALYST')")
-    public ResponseEntity<RatingResult> getRatingByPropertyId(@PathVariable Long propertyId) {
-        RatingResult ratingResult = ratingService.getRatingByPropertyId(propertyId);
-        return ResponseEntity.ok(ratingResult);
-    }
+//     /**
+//      * Get rating by property ID
+//      */
+//     @GetMapping("/property/{propertyId}")
+//     @PreAuthorize("hasAnyRole('ADMIN', 'ANALYST')")
+//     public ResponseEntity<RatingResult> getRatingByPropertyId(@PathVariable Long propertyId) {
+//         RatingResult ratingResult = ratingService.getRatingByPropertyId(propertyId);
+//         return ResponseEntity.ok(ratingResult);
+//     }
 
-    /**
-     * Get all ratings
-     */
-    @GetMapping
-    @PreAuthorize("hasAnyRole('ADMIN', 'ANALYST')")
-    public ResponseEntity<List<RatingResult>> getAllRatings() {
-        List<RatingResult> ratings = ratingService.getAllRatings();
-        return ResponseEntity.ok(ratings);
-    }
+//     /**
+//      * Get all ratings
+//      */
+//     @GetMapping
+//     @PreAuthorize("hasAnyRole('ADMIN', 'ANALYST')")
+//     public ResponseEntity<List<RatingResult>> getAllRatings() {
+//         List<RatingResult> ratings = ratingService.getAllRatings();
+//         return ResponseEntity.ok(ratings);
+//     }
 
-    /**
-     * Get ratings by category
-     */
-    @GetMapping("/category/{category}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'ANALYST')")
-    public ResponseEntity<List<RatingResult>> getRatingsByCategory(@PathVariable String category) {
-        List<RatingResult> ratings = ratingService.getRatingsByCategory(category);
-        return ResponseEntity.ok(ratings);
-    }
+//     /**
+//      * Get ratings by category
+//      */
+//     @GetMapping("/category/{category}")
+//     @PreAuthorize("hasAnyRole('ADMIN', 'ANALYST')")
+//     public ResponseEntity<List<RatingResult>> getRatingsByCategory(@PathVariable String category) {
+//         List<RatingResult> ratings = ratingService.getRatingsByCategory(category);
+//         return ResponseEntity.ok(ratings);
+//     }
 
-    /**
-     * Get rating logs for a property
-     */
-    @GetMapping("/logs/property/{propertyId}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'ANALYST')")
-    public ResponseEntity<List<RatingLog>> getRatingLogsByPropertyId(@PathVariable Long propertyId) {
-        List<RatingLog> logs = ratingService.getRatingLogsByPropertyId(propertyId);
-        return ResponseEntity.ok(logs);
-    }
+//     /**
+//      * Get rating logs for a property
+//      */
+//     @GetMapping("/logs/property/{propertyId}")
+//     @PreAuthorize("hasAnyRole('ADMIN', 'ANALYST')")
+//     public ResponseEntity<List<RatingLog>> getRatingLogsByPropertyId(@PathVariable Long propertyId) {
+//         List<RatingLog> logs = ratingService.getRatingLogsByPropertyId(propertyId);
+//         return ResponseEntity.ok(logs);
+//     }
 
-    /**
-     * Get all rating logs
-     */
-    @GetMapping("/logs")
-    @PreAuthorize("hasAnyRole('ADMIN', 'ANALYST')")
-    public ResponseEntity<List<RatingLog>> getAllRatingLogs() {
-        List<RatingLog> logs = ratingService.getAllRatingLogs();
-        return ResponseEntity.ok(logs);
-    }
-}
+//     /**
+//      * Get all rating logs
+//      */
+//     @GetMapping("/logs")
+//     @PreAuthorize("hasAnyRole('ADMIN', 'ANALYST')")
+//     public ResponseEntity<List<RatingLog>> getAllRatingLogs() {
+//         List<RatingLog> logs = ratingService.getAllRatingLogs();
+//         return ResponseEntity.ok(logs);
+//     }
+// }
