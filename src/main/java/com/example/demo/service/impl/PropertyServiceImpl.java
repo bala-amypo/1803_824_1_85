@@ -21,10 +21,16 @@ public class PropertyServiceImpl implements PropertyService {
         return propertyRepository.save(property);
     }
 
+    // Fixes the Integration Test error
+    @Override
+    public Property addProperty(Property property) {
+        return propertyRepository.save(property);
+    }
+
     @Override
     public Property getPropertyById(Long id) {
         return propertyRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Property not found with id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Property not found"));
     }
 
     @Override
@@ -36,7 +42,7 @@ public class PropertyServiceImpl implements PropertyService {
     public Property updateProperty(Long id, Property property) {
         Property existing = getPropertyById(id);
         existing.setTitle(property.getTitle());
-        // set other fields as per your Entity
+        // Add other field updates here (e.g., existing.setCity(property.getCity()))
         return propertyRepository.save(existing);
     }
 
