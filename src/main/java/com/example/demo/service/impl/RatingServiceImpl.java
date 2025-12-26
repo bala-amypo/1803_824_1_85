@@ -175,4 +175,15 @@ public class RatingServiceImpl implements RatingService {
         }
 
         // 6. Save and Return
-        // Note: ratedAt
+        return ratingResultRepository.save(result);
+    }
+
+    @Override
+    public RatingResult getRating(Long propertyId) {
+        Property property = propertyRepository.findById(propertyId)
+                .orElseThrow(() -> new ResourceNotFoundException("Property not found"));
+
+        return ratingResultRepository.findByProperty(property)
+                .orElseThrow(() -> new ResourceNotFoundException("No rating result found for this property."));
+    }
+} // <--- This brace closes the class. Ensure it is present!
