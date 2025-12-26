@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface PropertyService {
     Property createProperty(Property property);
-    Property getPropertyById(Long id); // Changed from Optional to Property
+    Property getPropertyById(Long id);
     List<Property> getAllProperties();
     Property updateProperty(Long id, Property property);
     void deleteProperty(Long id);

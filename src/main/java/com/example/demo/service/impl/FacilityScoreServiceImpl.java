@@ -15,9 +15,9 @@ public class FacilityScoreServiceImpl implements FacilityScoreService {
     private final FacilityScoreRepository facilityScoreRepository;
     private final PropertyRepository propertyRepository;
 
-    public FacilityScoreServiceImpl(FacilityScoreRepository fsr, PropertyRepository pr) {
-        this.facilityScoreRepository = fsr;
-        this.propertyRepository = pr;
+    public FacilityScoreServiceImpl(FacilityScoreRepository facilityScoreRepository, PropertyRepository propertyRepository) {
+        this.facilityScoreRepository = facilityScoreRepository;
+        this.propertyRepository = propertyRepository;
     }
 
     @Override
@@ -32,7 +32,6 @@ public class FacilityScoreServiceImpl implements FacilityScoreService {
     public List<FacilityScore> getAllScoresByProperty(Long propertyId) {
         Property property = propertyRepository.findById(propertyId)
                 .orElseThrow(() -> new ResourceNotFoundException("Property not found"));
-        // This assumes your repo has: List<FacilityScore> findAllByProperty(Property p)
         return facilityScoreRepository.findAllByProperty(property);
     }
 
@@ -41,6 +40,6 @@ public class FacilityScoreServiceImpl implements FacilityScoreService {
         Property property = propertyRepository.findById(propertyId)
                 .orElseThrow(() -> new ResourceNotFoundException("Property not found"));
         return facilityScoreRepository.findByProperty(property)
-                .orElseThrow(() -> new ResourceNotFoundException("Score not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Score not found for this property"));
     }
 }

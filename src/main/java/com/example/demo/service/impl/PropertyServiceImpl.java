@@ -24,7 +24,7 @@ public class PropertyServiceImpl implements PropertyService {
     @Override
     public Property getPropertyById(Long id) {
         return propertyRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Property not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Property not found with id: " + id));
     }
 
     @Override
@@ -36,7 +36,7 @@ public class PropertyServiceImpl implements PropertyService {
     public Property updateProperty(Long id, Property property) {
         Property existing = getPropertyById(id);
         existing.setTitle(property.getTitle());
-        // set other fields as needed...
+        // set other fields as per your Entity
         return propertyRepository.save(existing);
     }
 
