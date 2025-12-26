@@ -40,28 +40,28 @@
 //}
 
 
-// package com.example.demo.entity;
+package com.example.demo.entity;
 
-// import jakarta.persistence.*;
-// import jakarta.validation.constraints.*;
-// import lombok.*;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
+import lombok.*;
 
-// @Entity
-// @Table(name = "facility_scores")
-// @Getter @Setter @NoArgsConstructor
-// public class FacilityScore {
-//     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-//     private Long id;
+@Entity
+@Table(name = "facility_scores")
+@Getter @Setter @NoArgsConstructor
+public class FacilityScore {
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-//     @OneToOne
-//     @JoinColumn(name = "property_id", unique = true)
-//     private Property property;
+    @OneToOne
+    @JoinColumn(name = "property_id", unique = true)
+    private Property property;
 
-//     @Min(0) @Max(10) private Integer schoolProximity;
-//     @Min(0) @Max(10) private Integer hospitalProximity;
-//     @Min(0) @Max(10) private Integer transportAccess;
-//     @Min(0) @Max(10) private Integer safetyScore;
-//}
+    @Min(0) @Max(10) private Integer schoolProximity;
+    @Min(0) @Max(10) private Integer hospitalProximity;
+    @Min(0) @Max(10) private Integer transportAccess;
+    @Min(0) @Max(10) private Integer safetyScore;
+}
 
 
 // package com.example.demo.entity;
@@ -207,60 +207,60 @@
 //     }
 // }
 
-package com.example.demo.entity;
+// package com.example.demo.entity;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
+// import jakarta.persistence.*;
+// import jakarta.validation.constraints.Max;
+// import jakarta.validation.constraints.Min;
 
-@Entity
-public class FacilityScore {
+// @Entity
+// public class FacilityScore {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+//     @Id
+//     @GeneratedValue(strategy = GenerationType.IDENTITY)
+//     private Long id;
 
-    @Min(0) @Max(10)
-    private int schoolProximity;
+//     @Min(0) @Max(10)
+//     private int schoolProximity;
 
-    @Min(0) @Max(10)
-    private int hospitalProximity;
+//     @Min(0) @Max(10)
+//     private int hospitalProximity;
 
-    @Min(0) @Max(10)
-    private int transportAccess;
+//     @Min(0) @Max(10)
+//     private int transportAccess;
 
-    @Min(0) @Max(10)
-    private int safetyScore;
+//     @Min(0) @Max(10)
+//     private int safetyScore;
 
-    @OneToOne
-    @JoinColumn(name = "property_id", unique = true)
-    private Property property;
+//     @OneToOne
+//     @JoinColumn(name = "property_id", unique = true)
+//     private Property property;
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+//     public Long getId() { return id; }
+//     public void setId(Long id) { this.id = id; }
 
-    public int getSchoolProximity() { return schoolProximity; }
-    public void setSchoolProximity(int schoolProximity) {
-        this.schoolProximity = schoolProximity;
-    }
+//     public int getSchoolProximity() { return schoolProximity; }
+//     public void setSchoolProximity(int schoolProximity) {
+//         this.schoolProximity = schoolProximity;
+//     }
 
-    public int getHospitalProximity() { return hospitalProximity; }
-    public void setHospitalProximity(int hospitalProximity) {
-        this.hospitalProximity = hospitalProximity;
-    }
+//     public int getHospitalProximity() { return hospitalProximity; }
+//     public void setHospitalProximity(int hospitalProximity) {
+//         this.hospitalProximity = hospitalProximity;
+//     }
 
-    public int getTransportAccess() { return transportAccess; }
-    public void setTransportAccess(int transportAccess) {
-        this.transportAccess = transportAccess;
-    }
+//     public int getTransportAccess() { return transportAccess; }
+//     public void setTransportAccess(int transportAccess) {
+//         this.transportAccess = transportAccess;
+//     }
 
-    public int getSafetyScore() { return safetyScore; }
-    public void setSafetyScore(int safetyScore) {
-        this.safetyScore = safetyScore;
-    }
+//     public int getSafetyScore() { return safetyScore; }
+//     public void setSafetyScore(int safetyScore) {
+//         this.safetyScore = safetyScore;
+//     }
 
-    public Property getProperty() { return property; }
-    public void setProperty(Property property) {
-        this.property = property;
-    }
-}
+//     public Property getProperty() { return property; }
+//     public void setProperty(Property property) {
+//         this.property = property;
+//     }
+// }
