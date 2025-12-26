@@ -77,46 +77,143 @@
 //     @PrePersist protected void onCreate() { ratedAt = LocalDateTime.now(); }
 // }
 
+// package com.example.demo.entity;
+
+// import jakarta.persistence.*;
+// import java.time.LocalDateTime;
+
+// @Entity
+// @Table(name = "ratingresults")
+// public class RatingResult {
+//     @Id
+//     @GeneratedValue(strategy = GenerationType.IDENTITY)
+//     private Long id;
+
+//     @OneToOne
+//     @JoinColumn(name = "property_id")
+//     private Property property;
+
+//     private Double finalRating;
+//     private String ratingCategory;
+//     private LocalDateTime ratedAt;
+
+//     @PrePersist
+//     protected void onCreate() {
+//         ratedAt = LocalDateTime.now();
+//     }
+
+//     public RatingResult() {}
+
+//     public Long getId() { return id; }
+//     public void setId(Long id) { this.id = id; }
+
+//     public Property getProperty() { return property; }
+//     public void setProperty(Property property) { this.property = property; }
+
+//     public Double getFinalRating() { return finalRating; }
+//     public void setFinalRating(Double finalRating) { this.finalRating = finalRating; }
+
+//     public String getRatingCategory() { return ratingCategory; }
+//     public void setRatingCategory(String ratingCategory) { this.ratingCategory = ratingCategory; }
+
+//     public LocalDateTime getRatedAt() { return ratedAt; }
+//     public void setRatedAt(LocalDateTime ratedAt) { this.ratedAt = ratedAt; }
+// }
+
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import org.hibernate.annotations.CreationTimestamp;
+
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "ratingresults")
+@Table(name = "rating_results")
 public class RatingResult {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    // One-to-One with Property
     @OneToOne
-    @JoinColumn(name = "property_id")
+    @JoinColumn(name = "property_id", unique = true, nullable = false)
     private Property property;
 
+    @NotNull(message = "Final rating is required")
+    @Column(name = "final_rating", nullable = false)
     private Double finalRating;
-    private String ratingCategory;
+
+    @NotNull(message = "Rating category is required")
+    @Column(name = "rating_category", nullable = false)
+    private String ratingCategory; // EXCELLENT, GOOD, AVERAGE, POOR
+
+    @CreationTimestamp
+    @Column(name = "rated_at", nullable = false, updatable = false)
     private LocalDateTime ratedAt;
 
-    @PrePersist
-    protected void onCreate() {
-        ratedAt = LocalDateTime.now();
+    // Constructors
+    public RatingResult() {
     }
 
-    public RatingResult() {}
+    public RatingResult(Property property, Double finalRating, String ratingCategory) {
+        this.property = property;
+        this.finalRating = finalRating;
+        this.ratingCategory = ratingCategory;
+    }
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    // Helper method to determine category based on rating
+    public static String determineCategory(Double rating) {
+        if (rating >= 8.0) {
+            return "EXCELLENT";
+        } else if (rating >= 6.0) {
+            return "GOOD";
+        } else if (rating >= 4.0) {
+            return "AVERAGE";
+        } else {
+            return "POOR";
+        }
+    }
 
-    public Property getProperty() { return property; }
-    public void setProperty(Property property) { this.property = property; }
+    // Getters and Setters
+    public Long getId() {
+        return id;
+    }
 
-    public Double getFinalRating() { return finalRating; }
-    public void setFinalRating(Double finalRating) { this.finalRating = finalRating; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public String getRatingCategory() { return ratingCategory; }
-    public void setRatingCategory(String ratingCategory) { this.ratingCategory = ratingCategory; }
+    public Property getProperty() {
+        return property;
+    }
 
-    public LocalDateTime getRatedAt() { return ratedAt; }
-    public void setRatedAt(LocalDateTime ratedAt) { this.ratedAt = ratedAt; }
+    public void setProperty(Property property) {
+        this.property = property;
+    }
+
+    public Double getFinalRating() {
+        return finalRating;
+    }
+
+    public void setFinalRating(Double finalRating) {
+        this.finalRating = finalRating;
+    }
+
+    public String getRatingCategory() {
+        return ratingCategory;
+    }
+
+    public void setRatingCategory(String ratingCategory) {
+        this.ratingCategory = ratingCategory;
+    }
+
+    public LocalDateTime getRatedAt() {
+        return ratedAt;
+    }
+
+    public void setRatedAt(LocalDateTime ratedAt) {
+        this.ratedAt = ratedAt;
+    }
 }
-
