@@ -72,6 +72,20 @@
     <artifactId>spring-boot-starter-security</artifactId>
 </dependency>
 
+
+<!-- JWT Library -->
+<dependency>
+    <groupId>io.jsonwebtoken</groupId>
+    <artifactId>jjwt</artifactId>
+    <version>0.9.1</version>
+</dependency>
+<!-- JAXB for JWT (needed for Java 9+) -->
+<dependency>
+    <groupId>javax.xml.bind</groupId>
+    <artifactId>jaxb-api</artifactId>
+    <version>2.3.1</version>
+</dependency>
+
     </dependencies>
 
 	<build>
