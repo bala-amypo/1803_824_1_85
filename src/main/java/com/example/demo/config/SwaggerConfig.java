@@ -49,7 +49,7 @@ public class SwaggerConfig {
                 
                 // Your specific server URL
                 .servers(List.of(
-                        new Server().url("https://9071.pro604cr.amypo.ai/"),
+                        new Server().url("https://9006.32procr.amypo.ai/"),
                         new Server().url("http://localhost:8080") // Useful for local testing
                 ))
 
