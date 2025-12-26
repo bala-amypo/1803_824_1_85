@@ -80,21 +80,105 @@
 // }
 
 
+// package com.example.demo.controller;
+
+// import com.example.demo.dto.AuthResponse;
+// import com.example.demo.dto.LoginRequest;
+// import com.example.demo.dto.RegisterRequest;
+// import com.example.demo.entity.User;
+// import com.example.demo.repository.UserRepository;
+// import com.example.demo.security.JwtTokenProvider;
+// import jakarta.validation.Valid;
+// import org.springframework.beans.factory.annotation.Autowired;
+// import org.springframework.http.HttpStatus;
+// import org.springframework.http.ResponseEntity;
+// import org.springframework.security.authentication.AuthenticationManager;
+// import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+// import org.springframework.security.core.Authentication;
+// import org.springframework.security.crypto.password.PasswordEncoder;
+// import org.springframework.web.bind.annotation.*;
+
+// @RestController
+// @RequestMapping("/auth")
+// public class AuthController {
+
+//     @Autowired
+//     private AuthenticationManager authenticationManager;
+
+//     @Autowired
+//     private UserRepository userRepository;
+
+//     @Autowired
+//     private PasswordEncoder passwordEncoder;
+
+//     @Autowired
+//     private JwtTokenProvider tokenProvider;
+
+//     /**
+//      * Register a new user
+//      */
+//     @PostMapping("/register")
+//     public ResponseEntity<?> registerUser(@Valid @RequestBody RegisterRequest registerRequest) {
+//         // Check if email already exists
+//         if (userRepository.existsByEmail(registerRequest.getEmail())) {
+//             return ResponseEntity.badRequest().body("Email already in use");
+//         }
+
+//         // Create new user
+//         User user = new User();
+//         user.setName(registerRequest.getName());
+//         user.setEmail(registerRequest.getEmail());
+//         user.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
+//         user.setRole(registerRequest.getRole());
+
+//         User savedUser = userRepository.save(user);
+
+//         // Authenticate and generate token
+//         Authentication authentication = authenticationManager.authenticate(
+//                 new UsernamePasswordAuthenticationToken(
+//                         registerRequest.getEmail(),
+//                         registerRequest.getPassword()
+//                 )
+//         );
+
+//         String token = tokenProvider.generateToken(authentication, savedUser);
+
+//         AuthResponse response = new AuthResponse(token, savedUser.getId(), savedUser.getEmail(), savedUser.getRole());
+//         return ResponseEntity.status(HttpStatus.CREATED).body(response);
+//     }
+
+//     /**
+//      * Login user
+//      */
+//     @PostMapping("/login")
+//     public ResponseEntity<?> loginUser(@Valid @RequestBody LoginRequest loginRequest) {
+//         Authentication authentication = authenticationManager.authenticate(
+//                 new UsernamePasswordAuthenticationToken(
+//                         loginRequest.getEmail(),
+//                         loginRequest.getPassword()
+//                 )
+//         );
+
+//         User user = userRepository.findByEmail(loginRequest.getEmail())
+//                 .orElseThrow(() -> new RuntimeException("User not found"));
+
+//         String token = tokenProvider.generateToken(authentication, user);
+
+//         AuthResponse response = new AuthResponse(token, user.getId(), user.getEmail(), user.getRole());
+//         return ResponseEntity.ok(response);
+//     }
+// }
+
+
+
 package com.example.demo.controller;
 
-import com.example.demo.dto.AuthResponse;
-import com.example.demo.dto.LoginRequest;
-import com.example.demo.dto.RegisterRequest;
+import com.example.demo.dto.*;
 import com.example.demo.entity.User;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.security.JwtTokenProvider;
-import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
+import org.springframework.http.*;
+import org.springframework.security.authentication.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -102,70 +186,41 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/auth")
 public class AuthController {
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
+    private final UserRepository userRepo;
+    private final PasswordEncoder encoder;
+    private final AuthenticationManager authManager;
+    private final JwtTokenProvider jwt;
 
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
-    @Autowired
-    private JwtTokenProvider tokenProvider;
-
-    /**
-     * Register a new user
-     */
-    @PostMapping("/register")
-    public ResponseEntity<?> registerUser(@Valid @RequestBody RegisterRequest registerRequest) {
-        // Check if email already exists
-        if (userRepository.existsByEmail(registerRequest.getEmail())) {
-            return ResponseEntity.badRequest().body("Email already in use");
-        }
-
-        // Create new user
-        User user = new User();
-        user.setName(registerRequest.getName());
-        user.setEmail(registerRequest.getEmail());
-        user.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
-        user.setRole(registerRequest.getRole());
-
-        User savedUser = userRepository.save(user);
-
-        // Authenticate and generate token
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        registerRequest.getEmail(),
-                        registerRequest.getPassword()
-                )
-        );
-
-        String token = tokenProvider.generateToken(authentication, savedUser);
-
-        AuthResponse response = new AuthResponse(token, savedUser.getId(), savedUser.getEmail(), savedUser.getRole());
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    public AuthController(UserRepository userRepo, PasswordEncoder encoder,
+                          AuthenticationManager authManager, JwtTokenProvider jwt) {
+        this.userRepo = userRepo;
+        this.encoder = encoder;
+        this.authManager = authManager;
+        this.jwt = jwt;
     }
 
-    /**
-     * Login user
-     */
+    @PostMapping("/register")
+    public ResponseEntity<AuthResponse> register(@RequestBody RegisterRequest req) {
+        User u = new User();
+        u.setName(req.getName());
+        u.setEmail(req.getEmail());
+        u.setRole(req.getRole());
+        u.setPassword(encoder.encode(req.getPassword()));
+        userRepo.save(u);
+
+        Authentication auth = authManager.authenticate(
+                new UsernamePasswordAuthenticationToken(req.getEmail(), req.getPassword()));
+
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(new AuthResponse(jwt.generateToken(auth, u)));
+    }
+
     @PostMapping("/login")
-    public ResponseEntity<?> loginUser(@Valid @RequestBody LoginRequest loginRequest) {
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        loginRequest.getEmail(),
-                        loginRequest.getPassword()
-                )
-        );
-
-        User user = userRepository.findByEmail(loginRequest.getEmail())
-                .orElseThrow(() -> new RuntimeException("User not found"));
-
-        String token = tokenProvider.generateToken(authentication, user);
-
-        AuthResponse response = new AuthResponse(token, user.getId(), user.getEmail(), user.getRole());
-        return ResponseEntity.ok(response);
+    public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest req) {
+        Authentication auth = authManager.authenticate(
+                new UsernamePasswordAuthenticationToken(req.getEmail(), req.getPassword()));
+        User user = userRepo.findByEmail(req.getEmail()).orElseThrow();
+        return ResponseEntity.ok(new AuthResponse(jwt.generateToken(auth, user)));
     }
 }
 
