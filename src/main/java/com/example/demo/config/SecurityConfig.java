@@ -1,56 +1,56 @@
-package com.example.demo.config;
+// package com.example.demo.config;
 
-import com.example.demo.security.JwtAuthenticationEntryPoint;
-import com.example.demo.security.JwtAuthenticationFilter;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+// import com.example.demo.security.JwtAuthenticationEntryPoint;
+// import com.example.demo.security.JwtAuthenticationFilter;
+// import org.springframework.context.annotation.Bean;
+// import org.springframework.context.annotation.Configuration;
+// import org.springframework.security.authentication.AuthenticationManager;
+// import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+// import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+// import org.springframework.security.config.http.SessionCreationPolicy;
+// import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+// import org.springframework.security.crypto.password.PasswordEncoder;
+// import org.springframework.security.web.SecurityFilterChain;
+// import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-@Configuration
-public class SecurityConfig {
+// @Configuration
+// public class SecurityConfig {
 
-    private final JwtAuthenticationEntryPoint unauthorizedHandler;
-    private final JwtAuthenticationFilter jwtAuthenticationFilter;
+//     private final JwtAuthenticationEntryPoint unauthorizedHandler;
+//     private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
-    public SecurityConfig(JwtAuthenticationEntryPoint unauthorizedHandler, 
-                          JwtAuthenticationFilter jwtAuthenticationFilter) {
-        this.unauthorizedHandler = unauthorizedHandler;
-        this.jwtAuthenticationFilter = jwtAuthenticationFilter;
-    }
+//     public SecurityConfig(JwtAuthenticationEntryPoint unauthorizedHandler, 
+//                           JwtAuthenticationFilter jwtAuthenticationFilter) {
+//         this.unauthorizedHandler = unauthorizedHandler;
+//         this.jwtAuthenticationFilter = jwtAuthenticationFilter;
+//     }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+//     @Bean
+//     public PasswordEncoder passwordEncoder() {
+//         return new BCryptPasswordEncoder();
+//     }
 
-    @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
-        return authConfig.getAuthenticationManager();
-    }
+//     @Bean
+//     public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
+//         return authConfig.getAuthenticationManager();
+//     }
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf(csrf -> csrf.disable())
-            .exceptionHandling(ex -> ex.authenticationEntryPoint(unauthorizedHandler))
-            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-            .authorizeHttpRequests(auth -> auth
-                // Public Endpoints
-                .requestMatchers("/auth/**", "/hello-servlet", "/swagger-ui/**", "/v3/api-docs/**").permitAll()
-                // Role-based logic is handled inside controllers or via custom authorities
-                .anyRequest().authenticated()
-            );
+//     @Bean
+//     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//         http.csrf(csrf -> csrf.disable())
+//             .exceptionHandling(ex -> ex.authenticationEntryPoint(unauthorizedHandler))
+//             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+//             .authorizeHttpRequests(auth -> auth
+//                 // Public Endpoints
+//                 .requestMatchers("/auth/**", "/hello-servlet", "/swagger-ui/**", "/v3/api-docs/**").permitAll()
+//                 // Role-based logic is handled inside controllers or via custom authorities
+//                 .anyRequest().authenticated()
+//             );
 
-        http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
-        return http.build();
-   }
-}
+//         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+//         return http.build();
+//    }
+// }
 
 // package com.example.demo.security;
 
@@ -173,3 +173,41 @@ public class SecurityConfig {
 
 
 
+
+
+package com.example.demo.config;
+
+import com.example.demo.security.JwtAuthenticationFilter;
+import org.springframework.context.annotation.*;
+import org.springframework.security.authentication.*;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.crypto.bcrypt.*;
+import org.springframework.security.web.SecurityFilterChain;
+
+@Configuration
+public class SecurityConfig {
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public AuthenticationManager authenticationManager(
+            AuthenticationConfiguration config) throws Exception {
+        return config.getAuthenticationManager();
+    }
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+
+        http.csrf(csrf -> csrf.disable())
+            .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/auth/**", "/swagger-ui/**").permitAll()
+                .requestMatchers("/properties/**").authenticated()
+                .anyRequest().authenticated()
+            );
+
+        return http.build();
+    }
+}
