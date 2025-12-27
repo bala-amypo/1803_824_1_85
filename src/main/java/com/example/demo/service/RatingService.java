@@ -1,20 +1,10 @@
+package com.example.demo.service;
 
+import com.example.demo.entity.RatingResult;
 
-// package com.example.demo.service;
+public interface RatingService {
 
-// import com.example.demo.entity.RatingResult;
+    RatingResult generateRating(Long propertyId);
 
-// public interface RatingService {
-//     /**
-//      * Calculates the average score and assigns a category.
-//      */
-//     RatingResult generateRating(Long propertyId);
-
-//     /**
-//      * Retrieves an existing rating result for a property.
-//      */
-//     RatingResult getRating(Long propertyId);
-// }
-
-
-
+    RatingResult getRating(Long propertyId);
+}
