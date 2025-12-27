@@ -26,7 +26,6 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import org.testng.ITestListener;
 
 import java.util.List;
 
@@ -351,7 +350,7 @@ public void testServletHandlesUnsupportedMediaType() throws Exception {
 
     @Test(priority = 3, groups = "di")
     public void testBeanFromApplicationContext() {
-        Object bean = applicationContext.getBean("filterChain");
+        Object bean = applicationContext.getBean("securityFilterChain");
         Assert.assertNotNull(bean);
     }
 
