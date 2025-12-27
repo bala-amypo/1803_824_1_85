@@ -3,16 +3,12 @@ package com.example.demo.service.impl;
 import com.example.demo.entity.FacilityScore;
 import com.example.demo.entity.Property;
 import com.example.demo.entity.RatingResult;
-import com.example.demo.exception.BadRequestException;
 import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.repository.FacilityScoreRepository;
 import com.example.demo.repository.PropertyRepository;
 import com.example.demo.repository.RatingResultRepository;
 import com.example.demo.service.RatingService;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
 
 @Service
 public class RatingServiceImpl implements RatingService {
@@ -21,7 +17,6 @@ public class RatingServiceImpl implements RatingService {
     private final FacilityScoreRepository facilityScoreRepository;
     private final PropertyRepository propertyRepository;
 
-    // Constructor Injection (No @RequiredArgsConstructor needed)
     public RatingServiceImpl(RatingResultRepository ratingResultRepository,
                              FacilityScoreRepository facilityScoreRepository,
                              PropertyRepository propertyRepository) {
@@ -31,51 +26,44 @@ public class RatingServiceImpl implements RatingService {
     }
 
     @Override
-    @Transactional
     public RatingResult generateRating(Long propertyId) {
-        // 1. Find Property
+
         Property property = propertyRepository.findById(propertyId)
-                .orElseThrow(() -> new ResourceNotFoundException("Property not found with ID: " + propertyId));
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Property not found with id: " + propertyId));
 
-        // 2. Find Facility Score
         FacilityScore score = facilityScoreRepository.findByProperty(property)
-                .orElseThrow(() -> new BadRequestException("Facility scores must be provided before generating a rating."));
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Facility score not found for property"));
 
-        // 3. Calculate Average
-        double average = (score.getSchoolProximity() + 
-                          score.getHospitalProximity() + 
-                          score.getTransportAccess() + 
-                          score.getSafetyScore()) / 4.0;
+        double avg = (score.getSchoolProximity()
+                + score.getHospitalProximity()
+                + score.getTransportAccess()
+                + score.getSafetyScore()) / 4.0;
 
-        // 4. Check if a rating already exists for this property to update it, or create a new one
-        // Note: This requires your Repository to return Optional<RatingResult>
-        RatingResult result = ratingResultRepository.findByProperty(property)
-                .orElse(new RatingResult());
+        String category;
+        if (avg < 3) category = "POOR";
+        else if (avg < 6) category = "AVERAGE";
+        else if (avg < 8) category = "GOOD";
+        else category = "EXCELLENT";
 
+        RatingResult result = new RatingResult();
         result.setProperty(property);
-        result.setFinalRating(average);
-
-        // 5. Threshold Logic
-        if (average >= 8.0) {
-            result.setRatingCategory("EXCELLENT");
-        } else if (average >= 6.0) {
-            result.setRatingCategory("GOOD");
-        } else if (average >= 4.0) {
-            result.setRatingCategory("AVERAGE");
-        } else {
-            result.setRatingCategory("POOR");
-        }
+        result.setFinalRating(avg);
+        result.setRatingCategory(category);
 
         return ratingResultRepository.save(result);
     }
 
     @Override
     public RatingResult getRating(Long propertyId) {
-        Property property = propertyRepository.findById(propertyId)
-                .orElseThrow(() -> new ResourceNotFoundException("Property not found"));
 
-        // Use Optional handling to avoid the "cannot find symbol: orElseThrow" error
+        Property property = propertyRepository.findById(propertyId)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Property not found with id: " + propertyId));
+
         return ratingResultRepository.findByProperty(property)
-                .orElseThrow(() -> new ResourceNotFoundException("No rating result found for this property."));
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Rating not found for property"));
     }
 }
