@@ -1,31 +1,18 @@
-
-
-
 package com.example.demo.dto;
 
-public class ApiResponse {
+public class ApiResponse<T> {
     private boolean success;
     private String message;
-    private Object data;
+    private T data;
 
-    // Default Constructor
-    public ApiResponse() {
-    }
+    public ApiResponse() {}
 
-    // Constructor with all fields
-    public ApiResponse(boolean success, String message, Object data) {
+    public ApiResponse(boolean success, String message, T data) {
         this.success = success;
         this.message = message;
         this.data = data;
     }
 
-    // Constructor without data (useful for simple success/error messages)
-    public ApiResponse(boolean success, String message) {
-        this.success = success;
-        this.message = message;
-    }
-
-    // Manual Getters and Setters
     public boolean isSuccess() {
         return success;
     }
@@ -42,14 +29,11 @@ public class ApiResponse {
         this.message = message;
     }
 
-    public Object getData() {
+    public T getData() {
         return data;
     }
 
-    public void setData(Object data) {
+    public void setData(T data) {
         this.data = data;
     }
-    
 }
-
-

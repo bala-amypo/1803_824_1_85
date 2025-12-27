@@ -1,46 +1,32 @@
+package com.example.demo.controller;
 
+import com.example.demo.entity.Property;
+import com.example.demo.service.PropertyService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
 
-// package com.example.demo.controller;
+import java.util.List;
 
-// import org.springframework.web.bind.annotation.*;
-// import org.springframework.beans.factory.annotation.Autowired;
-// import com.example.demo.entity.Property;
-// import com.example.demo.service.PropertyService;
+@RestController
+@RequestMapping("/properties")
+public class PropertyController {
 
-// import java.util.List;
+    private final PropertyService propertyService;
 
-// @RestController
-// @RequestMapping("/properties")
-// public class PropertyController {
+    public PropertyController(PropertyService propertyService) {
+        this.propertyService = propertyService;
+    }
 
-//     @Autowired
-//     private PropertyService service;
+    @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<Property> addProperty(@RequestBody Property property) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(propertyService.addProperty(property));
+    }
 
-//     @PostMapping
-//     public Property createProperty(@RequestBody Property property) {
-//         return service.createProperty(property);
-//     }
-
-//     @GetMapping
-//     public List<Property> getAllProperties() {
-//         return service.getAllProperties();
-//     }
-
-//     @GetMapping("/{id}")
-//     public Property getPropertyById(@PathVariable Long id) {
-//         return service.getPropertyById(id);
-//     }
-
-//     @PutMapping("/{id}")
-//     public Property updateProperty(@PathVariable Long id, @RequestBody Property property) {
-//         return service.updateProperty(id, property);
-//     }
-
-//     @DeleteMapping("/{id}")
-//     public String deleteProperty(@PathVariable Long id) {
-//         service.deleteProperty(id);
-//         return "Property deleted successfully";
-//     }
-// }
-
-
+    @GetMapping
+    public ResponseEntity<List<Property>> getAllProperties() {
+        return ResponseEntity.ok(propertyService.getAllProperties());
+    }
+}

@@ -1,37 +1,38 @@
-// package com.example.demo.controller;
+package com.example.demo.controller;
 
-// import com.example.demo.entity.RatingLog;
-// import com.example.demo.service.RatingLogService;
-// import org.springframework.web.bind.annotation.GetMapping;
-// import org.springframework.web.bind.annotation.PathVariable;
-// import org.springframework.web.bind.annotation.PostMapping;
-// import org.springframework.web.bind.annotation.RequestParam;
-// import org.springframework.web.bind.annotation.RequestMapping;
-// import org.springframework.web.bind.annotation.RestController;
-// import java.util.List;
+import com.example.demo.entity.RatingLog;
+import com.example.demo.service.RatingLogService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-// @RestController
-// @RequestMapping("/logs")
-// public class RatingLogController {
+import java.util.List;
 
-//     public final RatingLogService ratingLogService;
+@RestController
+@RequestMapping("/logs")
+public class RatingLogController {
 
-//     public RatingLogController(RatingLogService ratingLogService) {
-//         this.ratingLogService = ratingLogService;
-//     }
+    private final RatingLogService ratingLogService;
 
-  
-//     @PostMapping("/{propertyId}")
-//     public RatingLog addLog(@PathVariable Long propertyId, @RequestParam String message) {
-//         return ratingLogService.addLog(propertyId, message);
-//     }
+    public RatingLogController(RatingLogService ratingLogService) {
+        this.ratingLogService = ratingLogService;
+    }
 
-    
-//     @GetMapping("/{propertyId}")
-//     public List<RatingLog> getLogs(@PathVariable Long propertyId) {
-//         return ratingLogService.getLogsByProperty(propertyId);
-//     }
-// }
+    @PostMapping("/{propertyId}")
+    public ResponseEntity<RatingLog> addLog(
+            @PathVariable Long propertyId,
+            @RequestBody String message) {
 
+        return ResponseEntity.ok(
+                ratingLogService.addLog(propertyId, message)
+        );
+    }
 
+    @GetMapping("/{propertyId}")
+    public ResponseEntity<List<RatingLog>> getLogs(
+            @PathVariable Long propertyId) {
 
+        return ResponseEntity.ok(
+                ratingLogService.getLogsByProperty(propertyId)
+        );
+    }
+}

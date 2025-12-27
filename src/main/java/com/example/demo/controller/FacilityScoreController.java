@@ -1,43 +1,37 @@
+package com.example.demo.controller;
 
+import com.example.demo.entity.FacilityScore;
+import com.example.demo.service.FacilityScoreService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
+@RestController
+@RequestMapping("/scores")
+public class FacilityScoreController {
 
-// package com.example.demo.controller;
+    private final FacilityScoreService facilityScoreService;
 
-// import com.example.demo.entity.FacilityScore;
-// import com.example.demo.service.FacilityScoreService;
-// import jakarta.validation.Valid;
-// import org.springframework.web.bind.annotation.GetMapping;
-// import org.springframework.web.bind.annotation.PathVariable;
-// import org.springframework.web.bind.annotation.PostMapping;
-// import org.springframework.web.bind.annotation.RequestBody;
-// import org.springframework.web.bind.annotation.RequestMapping;
-// import org.springframework.web.bind.annotation.RestController;
-// import java.util.List;
+    public FacilityScoreController(FacilityScoreService facilityScoreService) {
+        this.facilityScoreService = facilityScoreService;
+    }
 
-// @RestController
-// @RequestMapping("/scores")
-// public class FacilityScoreController {
+    @PostMapping("/{propertyId}")
+    public ResponseEntity<FacilityScore> addScore(
+            @PathVariable Long propertyId,
+            @RequestBody FacilityScore score) {
 
-//     private final FacilityScoreService facilityScoreService;
+        return ResponseEntity.status(HttpStatus.CREATED).body(
+                facilityScoreService.addScore(propertyId, score)
+        );
+    }
 
-//     public FacilityScoreController(FacilityScoreService facilityScoreService) {
-//         this.facilityScoreService = facilityScoreService;
-//     }
-//     @PostMapping("/{propertyId}")
-//     public FacilityScore addScore(@PathVariable Long propertyId,
-//                                   @Valid @RequestBody FacilityScore score) {
-//         return facilityScoreService.addScore(propertyId, score);
-//    }
+    @GetMapping("/{propertyId}")
+    public ResponseEntity<FacilityScore> getScore(
+            @PathVariable Long propertyId) {
 
-//     @GetMapping("/{propertyId}")
-//     public FacilityScore getScore(@PathVariable Long propertyId) {
-//         return facilityScoreService.getScoreByProperty(propertyId);
-//     }
-
-//     @GetMapping("/all/{propertyId}")
-//     public List<FacilityScore> getAllScores(@PathVariable Long propertyId) {
-//         return facilityScoreService.getAllScoresByProperty(propertyId);
-//     }
-// }
-
-
+        return ResponseEntity.ok(
+                facilityScoreService.getScoreByProperty(propertyId)
+        );
+    }
+}
